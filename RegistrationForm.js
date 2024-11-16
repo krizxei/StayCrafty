@@ -3,6 +3,7 @@ import './JhoferDesign.css';
 
 // Create a mapping of card names to images
 const imageMap = {
+  //A Champions
   'Aatrox': require('./Card Pictures/Aatrox.png'),
   'Ahri': require('./Card Pictures/Ahri.png'),
   'Akali': require('./Card Pictures/Akali.png'),
@@ -16,11 +17,38 @@ const imageMap = {
   'Aurelion Sol': require('./Card Pictures/Aurelion Sol.png'),
   'Aurora': require('./Card Pictures/Aurora.png'),
   'Azir': require('./Card Pictures/Azir.png'),
-  // Add more cards as needed
+  //B Champions
+  'Bard': require('./Card Pictures/Bard.png'),
+  'Belveth': require('./Card Pictures/Belveth.png'),
+  'Blitzcrank': require('./Card Pictures/Blitzcrank.png'),
+  'Brand': require('./Card Pictures/Brand.png'),
+  'Braum': require('./Card Pictures/Braum.png'),
+  'Briar': require('./Card Pictures/Briar.png'),
+  //C Champions
+  'Caitlyn': require('./Card Pictures/Caitlyn.png'),
+  'Camille': require('./Card Pictures/Camille.png'),
+  'Cassiopeia': require('./Card Pictures/Cassiopeia.png'),
+  'Chogath': require('./Card Pictures/Chogath.png'),
+  'Corki': require('./Card Pictures/Corki.png'),
+  //D Champions
+  'Darius': require('./Card Pictures/Darius.png'),
+  'Diana': require('./Card Pictures/Diana.png'),
+  'Dr. Mundo': require('./Card Pictures/Dr. Mundo.png'),
+  'Draven': require('./Card Pictures/Draven.png'),
+  //E Champions
+  'Ekko': require('./Card Pictures/Ekko.png'),
+  'Elise': require('./Card Pictures/Elise.png'),
+  'Evelynn': require('./Card Pictures/Evelynn.png'),
+  'Ezreal': require('./Card Pictures/Ezreal.png'),
+  //F Champions
+  'Fiddlesticks': require('./Card Pictures/Fiddlesticks.png'),
+  'Fiora': require('./Card Pictures/Fiora.png'),
+  'Fizz': require('./Card Pictures/Fizz.png'),
 };
 
 // Create an array of card data
 const cardData = [
+  //A Champions
   { id: 1, name: 'Aatrox' },
   { id: 2, name: 'Ahri' },
   { id: 3, name: 'Akali' },
@@ -34,8 +62,37 @@ const cardData = [
   { id: 11, name: 'Aurelion Sol' },
   { id: 12, name: 'Aurora' },
   { id: 13, name: 'Azir' },
+  //B Champions
+  { id: 14, name: 'Bard' },
+  { id: 15, name: 'Belveth' },
+  { id: 16, name: 'Blitzcrank' },
+  { id: 17, name: 'Brand' },
+  { id: 18, name: 'Braum' },
+  { id: 19, name: 'Briar' },
+  //C Champions
+  { id: 20, name: 'Caitlyn' },
+  { id: 21, name: 'Camille' },
+  { id: 22, name: 'Cassiopeia' },
+  { id: 23, name: 'Chogath' },
+  { id: 24, name: 'Corki' },
+  //D Champions
+  { id: 25, name: 'Darius' },
+  { id: 26, name: 'Diana' },
+  { id: 27, name: 'Dr. Mundo' },
+  { id: 28, name: 'Draven' },
+  //E Champions
+  { id: 29, name: 'Ekko' },
+  { id: 30, name: 'Elise' },
+  { id: 31, name: 'Evelynn' },
+  { id: 32, name: 'Ezreal' },
+  //F Champions
+  { id: 33, name: 'Fiddlesticks' },
+  { id: 34, name: 'Fiora' },
+  { id: 35, name: 'Fizz' },
   // Continue adding cards...
 ];
+
+
 
 function RegistrationForm() {
   const [name, setName] = useState('');
@@ -81,6 +138,9 @@ function RegistrationForm() {
 
   return (
     <div>
+      <header>
+        <h1 id="MainTitle"> RUNETERRA CARDCRAFT</h1>
+      </header>
       {!submitted && !isRegistered ? (
         <form onSubmit={handleSubmit}>
           <h2>Registration Form</h2>

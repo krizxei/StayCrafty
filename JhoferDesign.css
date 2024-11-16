@@ -1,11 +1,33 @@
 /* Existing CSS */
+
+div {
+  margin-bottom: 15px;
+}
+
+#MainTitle {
+  color: white;
+  font-size: 50px; /* Adjust font size as needed */
+  text-align: center;
+  font-family: 'Chewy', cursive;
+}
+
+header{
+  background-image: url('./Pictures/RuneterraCardcraft.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height:80px;
+}
+
 h2 {
+  font-family: 'Chewy', cursive;
   color: #333;
   text-align: center;
   padding: 5%;
 }
 
 form {
+  font-family: 'Chewy', cursive;
   max-width: 400px;
   margin: 50px auto; 
   padding: 20px;
@@ -15,16 +37,13 @@ form {
   background-color: white;
 }
 
-div {
-  margin-bottom: 15px;
-}
-
 label {
   display: block;
   margin-bottom: 5px;
 }
 
 input {
+  font-family: 'Chewy', cursive;
   width: 100%;
   height: 30px;
   padding: 3px;
@@ -33,6 +52,7 @@ input {
 }
 
 button {
+  font-family: 'Chewy', cursive;
   margin: 5px;
   width: 100%;
   padding: 10px;
@@ -48,20 +68,13 @@ button:hover {
 }
 
 body {
-  margin: 0; 
-  font-family: Arial, sans-serif;
-  background-image: url('./Pictures/RiotGames.jpg');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  height: 100vh;
+
 }
 
-/* New CSS for card images */
 .card img {
-  width: 100%; /* Adjust to your preferred size */
-  max-width: 200px; /* Maximum width for the images */
-  height: auto; /* Maintain aspect ratio */
-  display: block; /* Center the image if needed */
-  margin: 0 auto; /* Center the image horizontally */
+  width: 100%; 
+  max-width: 200px; 
+  height: auto; 
+  display: block;
+  margin: 0 auto; 
 }
