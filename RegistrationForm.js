@@ -3,21 +3,37 @@ import './JhoferDesign.css';
 
 // Create a mapping of card names to images
 const imageMap = {
-  'Legendary Card': require('./Card Pictures/Aatrox.png'),
-  'Epic Card': require('./Card Pictures/Anivia.png'),
-  'Uncommon Card': require('./Card Pictures/Annie.png'),
-  'Ultimate Card': require('./Card Pictures/Aurelion Sol.png'),
-  'Common Card': require('./Card Pictures/Kindred.png'),
+  'Aatrox': require('./Card Pictures/Aatrox.png'),
+  'Ahri': require('./Card Pictures/Ahri.png'),
+  'Akali': require('./Card Pictures/Akali.png'),
+  'Akshan' : require('./Card Pictures/Akshan.png'),
+  'Alistar': require('./Card Pictures/Alistar.png'),
+  'Amumu': require('./Card Pictures/Amumu.png'),
+  'Anivia': require('./Card Pictures/Anivia.png'),
+  'Annie': require('./Card Pictures/Annie.png'),
+  'Aphelios': require('./Card Pictures/Aphelios.png'),
+  'Ashe': require('./Card Pictures/Ashe.png'),
+  'Aurelion Sol': require('./Card Pictures/Aurelion Sol.png'),
+  'Aurora': require('./Card Pictures/Aurora.png'),
+  'Azir': require('./Card Pictures/Azir.png'),
   // Add more cards as needed
 };
 
 // Create an array of card data
 const cardData = [
-  { id: 1, name: 'Common Card' },
-  { id: 2, name: 'Uncommon Card' },
-  { id: 3, name: 'Epic Card' },
-  { id: 4, name: 'Legendary Card' },
-  { id: 5, name: 'Ultimate Card' },
+  { id: 1, name: 'Aatrox' },
+  { id: 2, name: 'Ahri' },
+  { id: 3, name: 'Akali' },
+  { id: 4, name: 'Akshan' },
+  { id: 5, name: 'Alistar' },
+  { id: 6, name: 'Amumu' },
+  { id: 7, name: 'Anivia' },
+  { id: 8, name: 'Annie' },
+  { id: 9, name: 'Aphelios' },
+  { id: 10, name: 'Ashe' },
+  { id: 11, name: 'Aurelion Sol' },
+  { id: 12, name: 'Aurora' },
+  { id: 13, name: 'Azir' },
   // Continue adding cards...
 ];
 
