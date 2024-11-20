@@ -44,6 +44,44 @@ const imageMap = {
   'Fiddlesticks': require('./Card Pictures/Fiddlesticks.png'),
   'Fiora': require('./Card Pictures/Fiora.png'),
   'Fizz': require('./Card Pictures/Fizz.png'),
+  //G Champions
+  'Galio': require('./Card Pictures/Galio.png'),
+  'Gangplank': require('./Card Pictures/Gangplank.png'),
+  'Garen': require('./Card Pictures/Garen.png'),
+  'Gnar': require('./Card Pictures/Gnar.png'),
+  'Gragas': require('./Card Pictures/Gragas.png'),
+  'Graves': require('./Card Pictures/Graves.png'),
+  'Gwen': require('./Card Pictures/Gwen.png'),
+  //H Champions
+  'Hecarim': require('./Card Pictures/Hecarim.png'),
+  'Heimerdinger': require('./Card Pictures/Heimerdinger.png'),
+  'Hwei': require('./Card Pictures/Hwei.png'),
+  //I Champions
+  'Illaoi': require('./Card Pictures/Illaoi.png'),
+  'Irelia': require('./Card Pictures/Irelia.png'),
+  'Ivern': require('./Card Pictures/Ivern.png'),
+  //J Champions
+  'Janna': require('./Card Pictures/Janna.png'),
+  'Jarvan IV': require('./Card Pictures/Jarvan IV.png'),
+  'Jax': require('./Card Pictures/Jax.png'),
+  'Jayce': require('./Card Pictures/Jayce.png'),
+  'Jhin': require('./Card Pictures/Jhin.png'),
+  'Jinx': require('./Card Pictures/Jinx.png'),
+  //K Champions
+  'KaiSa': require('./Card Pictures/KaiSa.png'),
+  'Kalista': require('./Card Pictures/Kalista.png'),
+  'Karma': require('./Card Pictures/Karma.png'),
+  'Karthus' : require('./Card Pictures/Karthus.png'),
+  'Kassadin': require('./Card Pictures/Kassadin.png'),
+  'Katarina': require('./Card Pictures/Katarina.png'),
+  'Kayle': require('./Card Pictures/Kayle.png'),
+  'Kayn': require('./Card Pictures/Kayn.png'),
+  'Kennen': require('./Card Pictures/Kennen.png'),
+  'Khazix': require('./Card Pictures/Khazix.png'),
+  'Kindred': require('./Card Pictures/Kindred.png'),
+  'Kled': require('./Card Pictures/Kled.png'),
+  'Kogmaw': require('./Card Pictures/Kogmaw.png'),
+  'KSante': require('./Card Pictures/KSante.png'),
 };
 
 // Create an array of card data
@@ -89,6 +127,44 @@ const cardData = [
   { id: 33, name: 'Fiddlesticks' },
   { id: 34, name: 'Fiora' },
   { id: 35, name: 'Fizz' },
+  //G Champions
+  { id: 36, name: 'Galio' },
+  { id: 37, name: 'Gangplank' },
+  { id: 38, name: 'Garen' },
+  { id: 39, name: 'Gnar' },
+  { id: 40, name: 'Gragas' },
+  { id: 41, name: 'Graves' },
+  { id: 42, name: 'Gwen' },
+  //H Champions
+  { id: 43, name: 'Hecarim' },
+  { id: 44, name: 'Heimerdinger' },
+  { id: 45, name: 'Hwei' },
+  //I Champions
+  { id: 46, name: 'Illaoi' },
+  { id: 47, name: 'Irelia' },
+  { id: 48, name: 'Ivern' },
+  //J Champions
+  { id: 49, name: 'Janna' },
+  { id: 50, name: 'Jarvan IV' },
+  { id: 51, name: 'Jax' },
+  { id: 52, name: 'Jayce' },
+  { id: 53, name: 'Jhin' },
+  { id: 54, name: 'Jinx' },
+  //K Champions
+  { id: 55, name: 'KaiSa' },
+  { id: 56, name: 'Kalista' },
+  { id: 57, name: 'Karma' },
+  { id: 58, name: 'Karthus' },
+  { id: 59, name: 'Kassadin' },
+  { id: 60, name: 'Katarina' },
+  { id: 61, name: 'Kayle' },
+  { id: 62, name: 'Kayn' },
+  { id: 63, name: 'Kennen' },
+  { id: 64, name: 'Khazix' },
+  { id: 65, name: 'Kindred' },
+  { id: 66, name: 'Kled' },
+  { id: 67, name: 'Kogmaw' },
+  { id: 68, name: 'KSante' },
   // Continue adding cards...
 ];
 
