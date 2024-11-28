@@ -82,6 +82,56 @@ const imageMap = {
   'Kled': require('./Card Pictures/Kled.png'),
   'Kogmaw': require('./Card Pictures/Kogmaw.png'),
   'KSante': require('./Card Pictures/KSante.png'),
+  //L Champions
+  'LeBlanc': require('./Card Pictures/LeBlanc.png'),
+  'Lee Sin': require('./Card Pictures/Lee Sin.png'),
+  'Leona': require('./Card Pictures/Leona.png'),
+  'Lillia': require('./Card Pictures/Lillia.png'),
+  'Lissandra': require('./Card Pictures/Lissandra.png'),
+  'Lucian': require('./Card Pictures/Lucian.png'),
+  'Lulu': require('./Card Pictures/Lulu.png'),
+  'Lux': require('./Card Pictures/Lux.png'),
+  //M Champions
+  'Malphite': require('./Card Pictures/Malphite.png'),
+  'Malzahar': require('./Card Pictures/Malzahar.png'),
+  'Maokai': require('./Card Pictures/Maokai.png'),
+  'Master Yi': require('./Card Pictures/Master Yi.png'),
+  'Milio': require('./Card Pictures/Milio.png'),
+  'Miss Fortune': require('./Card Pictures/Miss Fortune.png'),
+  'Mordekaiser': require('./Card Pictures/Mordekaiser.png'),
+  'Morgana': require('./Card Pictures/Morgana.png'),
+  //N Champions
+  'Naafiri': require('./Card Pictures/Naafiri.png'),
+  'Nami': require('./Card Pictures/Nami.png'),
+  'Nasus': require('./Card Pictures/Nasus.png'),
+  'Nautilus': require('./Card Pictures/Nautilus.png'),
+  'Neeko': require('./Card Pictures/Neeko.png'),
+  'Nidalee': require('./Card Pictures/Nidalee.png'),
+  'Nilah': require('./Card Pictures/Nilah.png'),
+  'Nocturne': require('./Card Pictures/Nocturne.png'),
+  'Nunu&Willump': require('./Card Pictures/Nunu & Willump.png'),
+  //O Champions
+  'Olaf': require('./Card Pictures/Olaf.png'),
+  'Orianna': require('./Card Pictures/Orianna.png'),
+  'Ornn': require('./Card Pictures/Ornn.png'),
+  //P Champions
+  'Pantheon': require('./Card Pictures/Pantheon.png'),
+  'Poppy': require('./Card Pictures/Poppy.png'),
+  'Pyke': require('./Card Pictures/Pyke.png'),
+  //Q Champions
+  'Qiyana': require('./Card Pictures/Qiyana.png'),
+  'Quinn': require('./Card Pictures/Quinn.png'),
+  //R Champions
+  'Rakan': require('./Card Pictures/Rakan.png'),
+  'Rammus': require('./Card Pictures/Rammus.png'),
+  'RekSai': require('./Card Pictures/RekSai.png'),
+  'Rell': require('./Card Pictures/Rell.png'),
+  'Renata Glasc': require('./Card Pictures/Renata Glasc.png'),
+  'Renekton': require('./Card Pictures/Renekton.png'),
+  'Rengar': require('./Card Pictures/Rengar.png'),
+  'Riven': require('./Card Pictures/Riven.png'),
+  'Rumble': require('./Card Pictures/Rumble.png'),
+  'Ryze': require('./Card Pictures/Ryze.png'),
 };
 
 // Create an array of card data
@@ -165,6 +215,56 @@ const cardData = [
   { id: 66, name: 'Kled' },
   { id: 67, name: 'Kogmaw' },
   { id: 68, name: 'KSante' },
+  //L Champions
+  { id: 69, name: 'LeBlanc' },
+  { id: 70, name: 'Lee Sin' },
+  { id: 71, name: 'Leona' },
+  { id: 72, name: 'Lillia' },
+  { id: 73, name: 'Lissandra' },
+  { id: 74, name: 'Lucian' },
+  { id: 75, name: 'Lulu' },
+  { id: 76, name: 'Lux' },
+  //M Champions
+  { id: 77, name: 'Malphite' },
+  { id: 78, name: 'Malzahar' },
+  { id: 79, name: 'Maokai' },
+  { id: 80, name: 'Master Yi' },
+  { id: 81, name: 'Milio' },
+  { id: 82, name: 'Miss Fortune' },
+  { id: 83, name: 'Mordekaiser' },
+  { id: 84, name: 'Morgana' },
+  //N Champions
+  { id: 85, name: 'Naafiri' },
+  { id: 86, name: 'Nami' },
+  { id: 87, name: 'Nasus' },
+  { id: 88, name: 'Nautilus' },
+  { id: 89, name: 'Neeko' },
+  { id: 90, name: 'Nidalee' },
+  { id: 91, name: 'Nilah' },
+  { id: 92, name: 'Nocturne' },
+  { id: 93, name: 'Nunu&Willump' },
+  //O Champions
+  { id: 94, name: 'Olaf' },
+  { id: 95, name: 'Orianna' },
+  { id: 96, name: 'Ornn' },
+  //P Champions
+  { id: 97, name: 'Pantheon' },
+  { id: 98, name: 'Poppy' },
+  { id: 99, name: 'Pyke' },
+  //Q Champions
+  { id: 100, name: 'Qiyana' },
+  { id: 101, name: 'Quinn' },
+  //R Champions
+  { id: 102, name: 'Rakan' },
+  { id: 103, name: 'Rammus' },
+  { id: 104, name: 'RekSai' },
+  { id: 105, name: 'Rell' },
+  { id: 106, name: 'Renata Glasc' },
+  { id: 107, name: 'Renekton' },
+  { id: 108, name: 'Rengar' },
+  { id: 109, name: 'Riven' },
+  { id: 110, name: 'Rumble' },
+  { id: 111, name: 'Ryze' },
   // Continue adding cards...
 ];
 
