@@ -1,0 +1,117 @@
+.login-container {
+    display: flex;
+    padding-top: 60px;
+  }
+  
+  .banner {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #333;
+    color: white;
+    padding: 10px;
+    text-align: center;
+  }
+  
+  .sidebar {
+    width: 25%; /* Sidebar width */
+    margin-top: 45px; /* Push the sidebar below the fixed header */
+    background-color: #00bfff; /* Sky blue background */
+    padding: 10px;
+    color: white;
+    text-align: center;
+    position: fixed;
+    top: 60px; /* Align sidebar below the header */
+    left: 0; /* Sidebar is aligned to the left */
+    bottom: 0; /* Keep it to the bottom */
+  }
+  
+  .login-form-container {
+    width: 75%; /* Take the remaining width after sidebar */
+    background-color: #1e90ff; /* Dodger blue */
+    padding: 20px;
+    margin-left: 25%; /* To make sure it is next to the sidebar */
+    display: flex;
+    flex-direction: column; /* Align form elements vertically */
+    justify-content: center;
+    align-items: center;
+    bottom: 0;
+  }
+  
+    h2 {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+    }
+    
+    .nav-btn {
+      width: 100%;
+      padding: 10px;
+      margin: 5px 0;
+      background-color: #4682b4; /* Steel blue */
+      color: white;
+      border: none;
+      cursor: pointer;
+      font-size: 1.2rem;
+    }
+  
+    
+    .nav-btn:hover {
+      background-color: #5a9bd5;
+    }
+  
+    .fake-btn{
+      width: 100%;
+      padding: 10px;
+      margin: 5px 0;
+      background-color: #5a9bd5;
+      color: white;
+      border: none;
+      cursor: pointer;
+      font-size: 1.2rem;
+    }
+  
+  
+  
+    
+    h3 {
+      font-size: 2rem;
+      color: white;
+      margin-bottom: 20px;
+    }
+    
+    .input-group {
+      margin-bottom: 15px;
+      width: 80%;
+    }
+    
+    input {
+      width: 100%;
+      padding: 10px;
+      font-size: 1rem;
+      border-radius: 5px;
+      border: none;
+    }
+    
+    .reg-btn{
+      margin-top: 5%;
+      margin-bottom: 66%;
+      width: 86%;
+      padding: 15px;
+      background-color: #ffcc00; /* Yellow */
+      color: black;
+      font-size: 1.2rem;
+      border: none;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+    
+    .reg-btn:hover {
+      background-color: #e0a800;
+    }
+    
+    .error-message {
+      color: red;
+      font-size: 1rem;
+    }
+    
