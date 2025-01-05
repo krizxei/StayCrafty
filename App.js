@@ -1,21 +1,15 @@
-import React, { useState } from 'react';
-import Login from './Screens/Login';
-import Register from './Screens/Register';
-import Account from './Screens/Account';
+import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Homepage from "./Screens/Homepage"; // Adjust the import path if needed
+
 
 function App() {
-  const [isLogin, setIsLogin] = useState(true); // true for login screen, false for register screen
-
-  // Function to toggle between Login and Register screens
-  const toggleScreen = () => {
-    setIsLogin(!isLogin);
-  };
-
   return (
-    <div>
-      {isLogin ? <Login toggleScreen={toggleScreen} /> : <Register toggleScreen={toggleScreen} />}
-      {isLogin ? <Login toggleScreen={toggleScreen} /> : <Account changeScreen={toggleScreen} />}
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/" element={<Homepage />} />
+      </Routes>
+    </Router>
   );
 }
 
