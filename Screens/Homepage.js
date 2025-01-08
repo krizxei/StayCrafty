@@ -1,260 +1,94 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "../Designs/Homepage.css";
-import Logo from "../Pictures/Logo Zoom.png";
-import UserIcon from "../Pictures/People Icon.png";
-import CartIcon from "../Pictures/Cart Icon.png";
+import NavigationBar from "./NavigationBar.js";
 import HomepageBanner from "../Pictures/Banner1.png"; 
+import EcoLogo from "../Pictures/eco.png";
+import LocalLogo from "../Pictures/local.png";
+import Service from "../Pictures/customerservice.png"; 
 
 const Homepage = () => {
-  const [isLoginModalOpen, setLoginModalOpen] = useState(false);
-  const [isCreateAccountModalOpen, setCreateAccountModalOpen] = useState(false);
-  const [isForgotPasswordModalOpen, setForgotPasswordModalOpen] = useState(false);
-  const [userName, setUserName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [warning, setWarning] = useState(""); 
-  const [users, setUsers] = useState([]); 
-  const [forgotPasswordEmail, setForgotPasswordEmail] = useState("");
-  const [forgotPasswordName, setForgotPasswordName] = useState("");
-  const [forgotPasswordLastName, setForgotPasswordLastName] = useState("");
-  const [forgotPasswordBirthday, setForgotPasswordBirthday] = useState("");
-  const [newPassword, setNewPassword] = useState(""); 
+  const [faqAnswers, setFaqAnswers] = useState({});
 
-  
-  const [isCartOpen, setCartOpen] = useState(false); 
-  const [cartItems, setCartItems] = useState([]); 
-
-  
-  const validateEmail = (email) => {
-    const re = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-    return re.test(email);
-  };
-
-  const openLoginModal = () => setLoginModalOpen(true);
-  const closeLoginModal = () => setLoginModalOpen(false);
-
-  const openCreateAccountModal = () => setCreateAccountModalOpen(true);
-  const closeCreateAccountModal = () => setCreateAccountModalOpen(false);
-
-  const openForgotPasswordModal = () => setForgotPasswordModalOpen(true);
-  const closeForgotPasswordModal = () => setForgotPasswordModalOpen(false);
-
-  const openCart = () => setCartOpen(true); 
-  const closeCart = () => setCartOpen(false); 
-
-  const handleLogin = () => {
-    if (!email || !password) {
-      setWarning("Input first!");
-      return;
-    }
-    if (!validateEmail(email)) {
-      setWarning("Please enter a valid email!");
-      return;
-    }
-    if (password.length > 8) {
-      setWarning("Password should be at most 8 characters");
-      return;
-    }
-
-    
-    const user = users.find((user) => user.email === email);
-    if (!user) {
-      setWarning("No account registered with this email. Please create an account first.");
-      return;
-    }
-
-    if (user.password !== password) {
-      setWarning("Wrong password! Please try again.");
-      return;
-    }
-
-    
-    setUserName(user.firstName);
-    closeLoginModal();
-    setWarning(""); 
-  };
-
-  const handleCreateAccount = (firstName, lastName, email, password) => {
-    setUsers([
-      ...users,
-      { firstName, lastName, email, password },
-    ]);
-    setUserName(firstName);
-    closeCreateAccountModal();
-  };
-
-  const handleForgotPassword = () => {
-    const user = users.find((user) => user.email === forgotPasswordEmail);
-    if (!user) {
-      setWarning("No account found with this email.");
-      return;
-    }
-
-    if (user.firstName === forgotPasswordName && user.lastName === forgotPasswordLastName) {
-      
-      setWarning("");
-      setNewPassword(""); 
-
-      return; 
-    } else {
-      setWarning("Incorrect name or details. Please try again.");
-    }
-  };
-
-  const handleNewPassword = () => {
-    const user = users.find((user) => user.email === forgotPasswordEmail);
-    if (user && newPassword) {
-      user.password = newPassword;
-      alert("Your password has been updated!");
-      setNewPassword(""); 
-      closeForgotPasswordModal(); 
-    } else {
-      setWarning("Please enter a new password.");
-    }
+  const toggleFaqAnswer = (index) => {
+    setFaqAnswers((prevAnswers) => ({
+      ...prevAnswers,
+      [index]: !prevAnswers[index],
+    }));
   };
 
   return (
     <div className="homepage">
-    
-      <header className="header">
-        <div className="logo-container">
-          <img src={Logo} alt="Stay Crafty By Krizzy" className="logo" />
-        </div>
-        <nav className="nav">
-          <ul>
-            <li><Link to="/categories">All Categories</Link></li>
-            <li><Link to="/bestsellers">Best Sellers</Link></li>
-            <li><Link to="/newest">Newest</Link></li>
-            <li><Link to="/stock">Back in Stock!</Link></li>
-            <li><Link to="/aesthetic">Choose your Aesthetic</Link></li>
-          </ul>
-        </nav>
-        <div className="header-icons">
-          <div className="search-bar-container">
-            <input
-              type="text"
-              className="search-bar"
-              placeholder="Search..."
-            />
-          </div>
-          {userName && <span className="user-name">Hello, {userName}!</span>}
-          <div className="icon user-icon" onClick={openLoginModal}>
-            <img src={UserIcon} alt="User Icon" className="icon-image" />
-          </div>
-          <div className="icon cart-icon" onClick={openCart}>
-            <img src={CartIcon} alt="Cart Icon" className="icon-image" />
-          </div>
-        </div>
-      </header>
+      <NavigationBar />
 
       {/* Banner Image */}
       <div className="banner-container">
         <img src={HomepageBanner} alt="Homepage Banner" className="banner-image" />
       </div>
+      {/* After the Banner */}
+      <div className="below-banner">
+        <h1 className="below-banner-heading">Awaken your creativity and align with the universe's flow.</h1>
+        <p className="below-banner-text">
+          Embark on a journey of self-expression with handcrafted treasures, inspired by nature’s timeless cycles.
+        </p>
+        <button className="shop-now-button">✿ SHOP NOW ✿</button>
+      </div>
 
-      {isCartOpen && (
-        <div className="cart-popout">
-          <div className="cart-header">
-            <span>MY CART</span>
-            <button className="close-btn" onClick={closeCart}>x</button>
-          </div>
-          <div className="cart-items-container">
-            <div className="cart-item">
-              <p>No items in your cart yet!</p>
-            </div>
-          </div>
-          <div className="cart-footer">
-            <div className="subtotal">
-              <span>Subtotal (1 item)</span>
-              <span>₱0.00</span>
-            </div>
-            <button className="checkout-btn">CHECKOUT</button>
-          </div>
+      {/* After the SHOP NOW Button */}
+      <div className="features-container">
+        <div className="feature-item">
+          <img src={EcoLogo} alt="Eco Paper Logo" className="feature-logo" />
+          <p className="feature-text eco-paper">Eco Paper</p>
+          <p className="feature-description">Environmentally-friendly sourced paper</p>
         </div>
-      )}
-
-      {/* Login, Create Account, and Forgot Password Modals */}
-      {isLoginModalOpen && (
-        <div className="modal">
-          <div className="modal-content">
-            <div className="modal-logo-container">
-              <img src={Logo} alt="Logo" className="modal-logo" />
-            </div>
-            <h2>Login to Your Account</h2>
-            <input
-              type="email"
-              placeholder="Email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-            />
-            <input
-              type="password"
-              placeholder="Password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            />
-            {warning && <div style={{ color: 'red' }}>{warning}</div>}
-            <button onClick={handleLogin}>Login</button>
-            <button onClick={openForgotPasswordModal}>Forgot Password?</button>
-            <p>New to our shop?</p>
-            <button onClick={openCreateAccountModal}>Create an Account</button>
-            <button onClick={closeLoginModal}>Close</button>
-          </div>
+        <div className="feature-item">
+          <img src={LocalLogo} alt="PH Made Logo" className="feature-logo" />
+          <p className="feature-text ph-made">PH Made</p>
+          <p className="feature-description">Small local family run business</p>
         </div>
-      )}
+        <div className="feature-item">
+          <img src={Service} alt="Customer Service Logo" className="feature-logo" />
+          <p className="feature-text customer-service">Customer Service</p>
+          <p className="feature-description">Super friendly and quick response</p>
+        </div>
+      </div>
 
-      {isCreateAccountModalOpen && (
-        <div className="modal">
-          <div className="modal-content">
-            <h2>Create an Account</h2>
-            <input type="text" placeholder="First Name" id="firstName" />
-            <input type="text" placeholder="Last Name" id="lastName" />
-            <input type="email" placeholder="Email" id="emailCreate" />
-            <input type="password" placeholder="Password" id="passwordCreate" />
-            <button
-              onClick={() => {
-                const firstName = document.getElementById('firstName').value;
-                const lastName = document.getElementById('lastName').value;
-                const emailCreate = document.getElementById('emailCreate').value;
-                const passwordCreate = document.getElementById('passwordCreate').value;
-                handleCreateAccount(firstName, lastName, emailCreate, passwordCreate);
-              }}
-            >
-              Create Account
+       {/* FAQ Section */}
+      <div className="faq-section">
+        <div className="faq-container">
+        <h2>Frequently Asked Questions</h2>
+          <div className="faq-item">
+            <button className="faq-question" onClick={() => toggleFaqAnswer(1)}>
+            💫 Where are you based? 
             </button>
-            <button onClick={closeCreateAccountModal}>Close</button>
+            {faqAnswers[1] && <p className="faq-answer">Our studio is located in Manila, Philippines. We post out all our items directly from our H.Q to anywhere in the world, including the USA.</p>}
+          </div>
+          <div className="faq-item">
+            <button className="faq-question" onClick={() => toggleFaqAnswer(2)}>
+            💫 Do you offer international shipping?
+            </button>
+            {faqAnswers[2] && <p className="faq-answer">Yes, we offer international shipping to selected countries.</p>}
+          </div>
+          <div className="faq-item">
+            <button className="faq-question" onClick={() => toggleFaqAnswer(3)}>
+            💫 What are your shipping times?
+            </button>
+            {faqAnswers[3] && <p className="faq-answer">2-3 business days anywhere in the PH from dispatch. 5-9 business days for the rest of the world.</p>}
+          </div>
+          <div className="faq-item">
+            <button className="faq-question" onClick={() => toggleFaqAnswer(4)}>
+            💫 Can I cancel my order?
+            </button>
+            {faqAnswers[4] && <p className="faq-answer">Unfortunately, we cannot process cancellations after payment has been made. Please check your order before submitting it.</p>}
+          </div>
+          <div className="faq-item">
+            <button className="faq-question" onClick={() => toggleFaqAnswer(5)}>
+            💫 What do I do if I think my item is lost?  
+            </button>
+            {faqAnswers[5] && <p className="faq-answer">If you have waited longer than our shipping times then please contact us asap on info@staycraftybykrizzy.com . There is very little we can do once an item is in the postal system but we pride ourselves on great customer service and will do anything we can to assist you.</p>}
           </div>
         </div>
-      )}
-
-      {isForgotPasswordModalOpen && (
-        <div className="modal">
-          <div className="modal-content">
-            <h2>Forgot Password</h2>
-            <input
-              type="email"
-              placeholder="Enter your email"
-              value={forgotPasswordEmail}
-              onChange={(e) => setForgotPasswordEmail(e.target.value)}
-            />
-            <input
-              type="text"
-              placeholder="Enter your first name"
-              value={forgotPasswordName}
-              onChange={(e) => setForgotPasswordName(e.target.value)}
-            />
-            <input
-              type="text"
-              placeholder="Enter your last name"
-              value={forgotPasswordLastName}
-              onChange={(e) => setForgotPasswordLastName(e.target.value)}
-            />
-            <button onClick={handleForgotPassword}>Submit</button>
-            <button onClick={closeForgotPasswordModal}>Close</button>
-          </div>
-        </div>
-      )}
+      </div>
     </div>
   );
 };
