@@ -1,7 +1,8 @@
 import React from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";  // Import Routes and Route from react-router-dom
 import Homepage from "./Screens/Homepage.js"; 
 import Categories from "./Screens/Categories.js";
+import ItemDetails from './Screens/ItemDetails.js'; 
 import Bestsellers from "./Screens/BestSellers.js";
 import New from "./Screens/New.js";
 import Stock from "./Screens/Stock.js";
@@ -10,13 +11,14 @@ import Aesthetic from "./Screens/Aesthetic.js";
 function App() {
   return (
     <Router>
-      <Routes>
+      <Routes> {/* Use Routes for v6+ routing */}
         <Route path="/" element={<Homepage />} />
         <Route path="/categories" element={<Categories />} />
         <Route path="/bestsellers" element={<Bestsellers />} />
         <Route path="/new" element={<New />} />
-        <Route path="/stock" element={<Stock/>} />
+        <Route path="/stock" element={<Stock />} />
         <Route path="/aesthetic" element={<Aesthetic />} />
+        <Route path="/item/:id" element={<ItemDetails />} />  {/* Handle dynamic route for item details */}
       </Routes>
     </Router>
   );
