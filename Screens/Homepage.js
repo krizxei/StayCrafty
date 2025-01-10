@@ -31,7 +31,10 @@ const Homepage = () => {
         <p className="below-banner-text">
           Embark on a journey of self-expression with handcrafted treasures, inspired by nature’s timeless cycles.
         </p>
-        <button className="shop-now-button">✿ SHOP NOW ✿</button>
+        
+        <Link to="/categories" className="shop-now-link">
+          <button className="shop-now-button">SHOP NOW</button>
+        </Link>
       </div>
 
       {/* After the SHOP NOW Button */}

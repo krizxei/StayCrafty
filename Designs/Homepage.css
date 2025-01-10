@@ -1,4 +1,27 @@
+body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    line-height: 1.6;
+    background-color: #ee97be; 
+    overflow-x: hidden;
+    padding-top: 80px;
+}
 
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 96%;
+  z-index: 1000;
+  background-color: #fff;
+  color: #ee97be;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 2rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  
+}
 /* Banner section */
 .banner-container {
     margin-top: 20px;

@@ -24,6 +24,9 @@ const NavigationBar = () => {
   const [isCartOpen, setCartOpen] = useState(false); 
   const [cartItems, setCartItems] = useState([]);
 
+  const [isAllCategoriesHovered, setAllCategoriesHovered] = useState(false);
+  const [isAestheticsHovered, setAestheticsHovered] = useState(false);
+
   const validateEmail = (email) => {
     const re = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
     return re.test(email);
@@ -40,6 +43,7 @@ const NavigationBar = () => {
 
   const openCart = () => setCartOpen(true); 
   const closeCart = () => setCartOpen(false); 
+  const [dropdownVisible, setDropdownVisible] = useState(false);
 
   const handleLogin = () => {
     if (!email || !password) {
@@ -112,22 +116,56 @@ const NavigationBar = () => {
     }
   };
 
+  const handleDropdownToggle = () => {
+    setDropdownVisible(prevState => !prevState);
+  };
+
   return (
     <div className="NavigationBar">
-    
       <header className="header">
         <div className="logo-container">
-         <Link to="/">
-          <img src={Logo} alt="Stay Crafty By Krizzy" className="logo" />
+          <Link to="/">
+            <img src={Logo} alt="Stay Crafty By Krizzy" className="logo" />
           </Link>
         </div>
         <nav className="nav">
           <ul>
-            <li><Link to="/categories">All Categories</Link></li>
+            <li 
+              onMouseEnter={() => setAllCategoriesHovered(true)} 
+              onMouseLeave={() => setAllCategoriesHovered(false)}
+            >
+              <Link to="/categories">All Categories</Link>
+              {isAllCategoriesHovered && (
+                <ul className="dropdown">
+                  <li><Link to="/journals">Journals</Link></li>
+                  <li><Link to="/pen">Pen</Link></li>
+                  <li><Link to="/tote-bags">Tote Bags</Link></li>
+                  <li><Link to="/pencil-case">Pencil Case/Pouch</Link></li>
+                  <li><Link to="/calendars">Calendars</Link></li>
+                  <li><Link to="/bundle">Bundle</Link></li>
+                </ul>
+              )}
+            </li>
             <li><Link to="/bestsellers">Best Sellers✶</Link></li>
-            <li class="nav-item"><Link to="/new"><span class="bubble new">New</span>Newest</Link></li>
-            <li class="nav-item"><Link to="/stock"><span class="bubble trending">Trending</span>Back in stock!</Link></li>
-            <li><Link to="/aesthetic">Choose your Aesthetic✦</Link></li>
+            <li className="nav-item"><Link to="/new"><span className="bubble new">New</span>Newest</Link></li>
+            <li className="nav-item"><Link to="/stock"><span className="bubble trending">Trending</span>Back in stock!</Link></li>
+            <li 
+              onMouseEnter={() => setAestheticsHovered(true)} 
+              onMouseLeave={() => setAestheticsHovered(false)}
+            >
+              <Link to="/aesthetic">Choose your Aesthetic✦</Link>
+              {isAestheticsHovered && (
+                <ul className="dropdown">
+                  <li><Link to="/sakura">Sakura💮</Link></li>
+                  <li><Link to="/lunar">Lunar🌙</Link></li>
+                  <li><Link to="/sol-and-luna">Sol and Luna☀️🌙</Link></li>
+                  <li><Link to="/tsuki">Tsuki🌕</Link></li>
+                  <li><Link to="/botanical">Botanical🌿</Link></li>
+                  <li><Link to="/vintage">Vintage📜</Link></li>
+                  <li><Link to="/zodiac">Zodiac🏹</Link></li>
+                </ul>
+              )}
+            </li>
           </ul>
         </nav>
         <div className="header-icons">
@@ -255,7 +293,3 @@ const NavigationBar = () => {
 };
 
 export default NavigationBar;
-
-
-  
-

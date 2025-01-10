@@ -1,0 +1,121 @@
+.item-details {
+    padding: 100px;
+    font-family: "Poppins", sans-serif;
+    background-color: #ffffff;
+    margin-top: 90px;
+  }
+  
+  .item-layout {
+    display: flex;
+    gap: 40px;
+    justify-content: center;
+    align-items: flex-start;
+  }
+  
+  .image-container {
+    flex: 1;
+    max-width: 400px;
+    position: relative;
+  }
+  
+  .main-image {
+    width: 100%;
+    height: 500px; /* Ensure all images are the same size */
+    object-fit: cover; /* Maintain the image aspect ratio without stretching */
+    border: 1px solid #ddd;
+    border-radius: 5px;
+  }
+  
+  .image-navigation {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 10px;
+  }
+  
+  .nav-button {
+    background-color: #f0f0f0;
+    border: 1px solid #ddd;
+    padding: 5px 10px;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 5px;
+  }
+  
+  .nav-button:hover {
+    background-color: #ddd;
+  }
+  
+  .back-button {
+    position: absolute;
+    top: -40px;
+    left: 0;
+    padding: 5px 10px;
+    cursor: pointer;
+    background-color: #d883a8;
+    border: none;
+    color: #ffffff;
+    border-radius: 5px;
+  }
+  
+  .item-info {
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .price {
+    font-size: 20px;
+    font-weight: bold;
+    color: #a72f68;
+    margin-bottom: 10px;
+  }
+  
+  .stock-status {
+    margin: 10px 0;
+    color: #c55;
+    font-weight: bold;
+  }
+  
+  .quantity-selector {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+  
+  .quantity-btn {
+    background-color: #f0f0f0;
+    border: 1px solid #ddd;
+    padding: 5px 10px;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 5px;
+  }
+  
+  .quantity-btn:hover {
+    background-color: #ddd;
+  }
+  
+  .quantity-display {
+    font-size: 16px;
+    font-weight: bold;
+    padding: 0 10px;
+  }
+  
+  .add-to-cart {
+    background-color: #d883a8;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 16px;
+  }
+  
+  .add-to-cart:hover {
+    background-color: #a72f68;
+  }
+  

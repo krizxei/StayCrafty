@@ -6,6 +6,56 @@
     margin: auto;
     overflow-x: hidden;
   }
+  .categories .card {
+    position: relative;
+    border: 3px solid #d883a8;
+    border-radius: 8px;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+    cursor: pointer;
+  }
+
+  .categories .card:hover {
+    transform: scale(1.05);
+  }
+
+  .categories .card-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+  }
+
+  
+  .categories .image-container img {
+    width: 100%;
+    height: auto;
+    transition: transform s ease;
+  }  
+
+  .categories .details {
+    padding: 10px;
+    text-align: center;
+  }
+  .categories .name,
+.categories .price {
+  margin: 0;
+  font-size: 1rem;
+}
+
+.categories .name {
+  font-weight: bold;
+}
+
+.categories .price {
+  color: #a72f68;
+}
+
+.categories .name,
+.categories .price {
+  text-decoration: none;
+  pointer-events: none; /* Prevent interaction */
+}
+
   
   /* Scoped Banner styling */
   .categories .banner {
@@ -23,22 +73,20 @@
   /* Scoped Grid container for items */
   .categories .items-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr); /* Fixed four columns */
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Fixed four columns */
     gap: 20px; /* Space between items */
     margin-top: 20px;
   }
   
   /* Scoped Item card styling */
-  .categories .item-card {
+  .categories .image-container {
     background-color: #ffffff;
     padding: 10px;
-    border: 3px solid #d883a8;
-    border-radius: 10px;
     text-align: center;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
   }
   
-  .categories .item-card:hover {
+  .categories .image-container:hover {
     transform: scale(1.05);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   }

@@ -2,11 +2,11 @@ import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";  // Import Routes and Route from react-router-dom
 import Homepage from "./Screens/Homepage.js"; 
 import Categories from "./Screens/Categories.js";
-import ItemDetails from './Screens/ItemDetails.js'; 
 import Bestsellers from "./Screens/BestSellers.js";
 import New from "./Screens/New.js";
 import Stock from "./Screens/Stock.js";
 import Aesthetic from "./Screens/Aesthetic.js";
+import ItemDetails from "./Screens/ItemDetails.js";
 
 function App() {
   return (
@@ -18,7 +18,7 @@ function App() {
         <Route path="/new" element={<New />} />
         <Route path="/stock" element={<Stock />} />
         <Route path="/aesthetic" element={<Aesthetic />} />
-        <Route path="/item/:id" element={<ItemDetails />} />  {/* Handle dynamic route for item details */}
+        <Route path="/item/:id" element={<ItemDetails />} />
       </Routes>
     </Router>
   );
