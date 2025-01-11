@@ -7,9 +7,7 @@ const ItemDetails = () => {
   const { state: item } = useLocation(); // Get the item data passed through Link
   const navigate = useNavigate();
   const [quantity, setQuantity] = useState(1);
-
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
-
 
   const handleBack = () => navigate(-1); // Go back to the previous page
 
@@ -26,13 +24,31 @@ const ItemDetails = () => {
     setCurrentImageIndex(nextIndex);
   };
 
+  const handlePreviousImage = () => {
+    const prevIndex =
+      (currentImageIndex - 1 + item.images.length) % item.images.length; // Loop back to the last image if at the start
+    setCurrentImageIndex(prevIndex);
+  };
+
   return (
     <div className="item-details">
       <NavigationBar />
       <div className="item-layout">
         <div className="image-container">
           <button onClick={handleBack} className="back-button">❮ Back</button>
-          <img src={item.image} alt={item.name} className="main-image" />
+          <div className="image-carousel">
+            <button className="nav-button" onClick={handlePreviousImage}>
+              ❮
+            </button>
+            <img
+              src={item.images[currentImageIndex]} // Display the current image
+              alt={item.name}
+              className="main-image"
+            />
+            <button className="nav-button" onClick={handleNextImage}>
+              ❯
+            </button>
+          </div>
         </div>
         <div className="item-info">
           <h1>{item.name}</h1>

@@ -45,6 +45,16 @@ const NavigationBar = () => {
   const closeCart = () => setCartOpen(false); 
   const [dropdownVisible, setDropdownVisible] = useState(false);
 
+  let debounceTimer;
+  const handleMouseEnter = () => {
+    clearTimeout(debounceTimer);
+    debounceTimer = setTimeout(() => setAestheticsHovered(true), 100);
+  };
+  const handleMouseLeave = () => {
+    clearTimeout(debounceTimer);
+    debounceTimer = setTimeout(() => setAestheticsHovered(false), 100);
+  };
+
   const handleLogin = () => {
     if (!email || !password) {
       setWarning("Input first!");

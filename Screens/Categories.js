@@ -8,7 +8,10 @@ const Categories = () => {
     {
       id: 1,
       name: "Botanical Garland Set",
-      image: require("../Pictures/Botanical Garland Set.jpg"),
+      images: [
+        require("../Pictures/Botanical Garland Set.jpg"),
+        require("../Pictures/Botanical Garland Set 1.jpg"),
+      ],
       hoverImage: require("../Pictures/Botanical Garland Set 1.jpg"),
       price: 150.00,
       description: "A beautiful botanical garland set perfect for decoration.",
@@ -17,7 +20,11 @@ const Categories = () => {
     {
       id: 2,
       name: "Botanical Pen",
-      image: require("../Pictures/Botanical Pen.jpg"),
+      images: [
+        require("../Pictures/Botanical Pen.jpg"),
+        require("../Pictures/Botanical Pen 1.jpg"),
+        require("../Pictures/Botanical Pen 2.jpg"),
+      ],
       hoverImage: require("../Pictures/Botanical Pen 1.jpg"),
       price: 100.00,
       description: "Enhance your journaling experience with our laser engraved ballpoint pen in our botanical design. A weighted refillable brass ballpoint pen with a large blue ink cartridge and linear attachable cap. Please Note - It is natural for brass to patina over time as it reacts to the oxygen in the air and the oils from your skin called toning. We recommend cleaning with a brass polish.",
@@ -25,7 +32,11 @@ const Categories = () => {
     {
       id: 3,
       name: "Digital Journal",
-      image: require("../Pictures/Digital Journal.jpg"),
+      images: [
+        require("../Pictures/Digital Journal.jpg"),
+        require("../Pictures/Digital Journal 1.jpg"),
+        require("../Pictures/Digital Journal 2.jpg"),
+      ],
       hoverImage: require("../Pictures/Digital Journal 1.jpg"),
       price: 199.00,
       description: "Tailored for digital use, ideal for printing or on digital devices like iPads. Enhances creativity and self-awareness, aligned with the lunar cycle.",
@@ -33,7 +44,11 @@ const Categories = () => {
     {
       id: 4,
       name: "Entomological Tote Bag",
-      image: require("../Pictures/Entomological Tote Bag.jpg"),
+      images: [
+        require("../Pictures/Entomological Tote Bag.jpg"),
+        require("../Pictures/Entomological Tote Bag 1.jpg"),
+        require("../Pictures/Entomological Tote Bag 2.jpg"),
+      ],
       hoverImage: require("../Pictures/Entomological Tote Bag 1.jpg"),
       price: 350.00,
       description: "CARE INSTRUCTIONS: Wash cold, inside out. DO NOT dry clean, bleach, or iron directly on design."
@@ -41,252 +56,383 @@ const Categories = () => {
     {
       id: 5,
       name: "Find Your Soul Path Book",
-      image: require("../Pictures/Find Your Soul Path Book.jpg"),
+      images: [
+        require("../Pictures/Find Your Soul Path Book.jpg"),
+        require("../Pictures/Find Your Soul Path Book 1.jpg"),
+        require("../Pictures/Find Your Soul Path Book 2.jpg"),
+      ],
       hoverImage: require("../Pictures/Find Your Soul Path Book 1.jpg"),
       price: 499.00,
     },
     {
       id: 6,
       name: "Gardener's Folklore Book",
-      image: require("../Pictures/Gardener's Folklore Book.jpg"),
+      images: [
+        require("../Pictures/Gardener's Folklore Book.jpg"),
+        require("../Pictures/Gardener's Folklore Book 1.jpg"),
+        require("../Pictures/Garderner's Folklore Book 2.jpg"),
+      ],
       hoverImage: require("../Pictures/Gardener's Folklore Book 1.jpg"),
       price: 499.00,
     },
     {
       id: 7,
       name: "Junk Journal",
-      image: require("../Pictures/Junk Journal.jpg"),
+      images: [
+        require("../Pictures/Junk Journal.jpg"),
+        require("../Pictures/Junk Journal 1.jpg"),
+        require("../Pictures/Junk Journal 2.jpg"),
+      ],
       hoverImage: require("../Pictures/Junk Journal 1.jpg"),
       price: 399.00,
     },
     {
       id: 8,
       name: "Large Cord Tote Bag",
-      image: require("../Pictures/Large Cord Tote Bag.jpg"),
+      images: [
+        require("../Pictures/Large Cord Tote Bag.jpg"),
+        require("../Pictures/Large Cord Tote Bag 1.jpg"),
+        require("../Pictures/Large Cord Tote Bag 2.jpg"),
+      ],
       hoverImage: require("../Pictures/Large Cord Tote Bag 1.jpg"),
       price: 359.00,
     },
     {
       id: 9,
       name: "Lunar Planner",
-      image: require("../Pictures/Lunar Planner.png"),
+      images: [
+        require("../Pictures/Lunar Planner.png"),
+        require("../Pictures/Lunar Planner 1.png"),
+      ],
       hoverImage: require("../Pictures/Lunar Planner 1.png"),
       price: 199.00,
     },
     {
       id: 10,
       name: "Lunar Stamp",
-      image: require("../Pictures/Lunar Stamp.png"),
+      images: [
+        require("../Pictures/Lunar Stamp.png"),
+        require("../Pictures/Lunar Stamp 1.png"),
+      ],
       hoverImage: require("../Pictures/Lunar Stamp 1.png"),
       price: 299.00,
     },
     {
       id: 11,
       name: "Lunar Sticker",
-      image: require("../Pictures/Lunar Sticker.png"),
+      images: [
+        require("../Pictures/Lunar Sticker.png"),
+        require("../Pictures/Lunar Sticker 1.png"),
+      ],
       hoverImage: require("../Pictures/Lunar Sticker 1.png"),
       price: 100.00,
     },
     {
       id: 12,
       name: "Lunar Tote Bag",
-      image: require("../Pictures/Lunar Tote Bag.jpg"),
+      images: [
+        require("../Pictures/Lunar Tote Bag.jpg"),
+        require("../Pictures/Lunar Tote Bag 1.jpg"),
+      ],
       hoverImage: require("../Pictures/Lunar Tote Bag 1.jpg"),
       price: 350.00,
     },
     {
       id: 13,
       name: "Lunar Washi Tape Set",
-      image: require("../Pictures/Lunar Washi Tape Set.jpg"),
+      images: [
+        require("../Pictures/Lunar Washi Tape Set.jpg"),
+        require("../Pictures/Lunar Washi Tape Set 1.jpg"),
+        require("../Pictures/Lunar Washi Tape Set 2.jpg"),
+      ],
       hoverImage: require("../Pictures/Lunar Washi Tape Set 1.jpg"),
       price: 299.00,
     },
     {
       id: 14,
       name: "Moon Poster Calendar",
-      image: require("../Pictures/Moon Poster Calendar.jpg"),
+      images: [
+        require("../Pictures/Moon Poster Calendar.jpg"),
+        require("../Pictures/Moon Poster Calendar 1.jpg"),
+        require("../Pictures/Moon Poster Calendar 2.jpg"),
+      ],
       hoverImage: require("../Pictures/Moon Poster Calendar 1.jpg"),
       price: 399.00,
     },
     {
       id: 15,
       name: "Pen Refill",
-      image: require("../Pictures/Pen Refill 1.jpg"),
+      images: [
+        require("../Pictures/Pen Refill 1.jpg"),
+        require("../Pictures/Pen Refill 2.jpg"),
+      ],
       hoverImage: require("../Pictures/Pen Refill 2.jpg"),
       price: 75.00,
     },
     {
       id: 16,
       name: "Sakura Journal",
-      image: require("../Pictures/Sakura Journal.png"),
+      images: [
+        require("../Pictures/Sakura Journal.png"),
+        require("../Pictures/Sakura Journal 1.png"),
+      ],
       hoverImage: require("../Pictures/Sakura Journal 1.png"),
       price: 199.00,
     },
     {
       id: 17,
       name: "Sakura Stamp Set",
-      image: require("../Pictures/Sakura Stamp Set.png"),
+      images: [
+        require("../Pictures/Sakura Stamp Set.png"),
+        require("../Pictures/Sakura Stamp Set 1.png"),
+        require("../Pictures/Sakura Stamp Set 2.png"),
+      ],
       hoverImage: require("../Pictures/Sakura Stamp Set 1.png"),
       price: 399.00,
     },
     {
       id: 18,
       name: "Sakura Sticker",
-      image: require("../Pictures/Sakura Sticker.png"),
+      images: [
+        require("../Pictures/Sakura Sticker.png"),
+        require("../Pictures/Sakura Sticker 1.png"),
+      ],
       hoverImage: require("../Pictures/Sakura Sticker 1.png"),
       price: 100.00,
     },
     {
       id: 19,
       name: "Sakura Washi Tape Set",
-      image: require("../Pictures/Sakura Washi Tape Set.png"),
+      images: [
+        require("../Pictures/Sakura Washi Tape Set.png"),
+        require("../Pictures/Sakura Washi Tape Set 1.png"),
+        require("../Pictures/Sakura Washi Tape Set 2.png"),
+      ],
       hoverImage: require("../Pictures/Sakura Washi Tape Set 1.png"),
       price: 299.00,
     },
     {
       id: 20,
       name: "Sights of Japan",
-      image: require("../Pictures/Sights of Japan.jpg"),
+      images: [
+        require("../Pictures/Sights of Japan.jpg"),
+        require("../Pictures/Sights of Japan 1.jpg"),
+        require("../Pictures/Sights of Japan 2.jpg"),
+      ],
       hoverImage: require("../Pictures/Sights of Japan 1.jpg"),
       price: 350.00,
     },
     {
       id: 21,
       name: "Small Poster Hanger",
-      image: require("../Pictures/Small Poster Hanger.jpg"),
+      images: [
+        require("../Pictures/Small Poster Hanger.jpg"),
+        require("../Pictures/Small Poster Hanger 1.jpg"),
+        require("../Pictures/Small Poster Hanger 2.jpg"),
+      ],
       hoverImage: require("../Pictures/Small Poster Hanger 1.jpg"),
       price: 75,
     },
     {
       id: 22,
       name: "Sol and Luna Blanket",
-      image: require("../Pictures/Sol and Luna Blanket.jpg"),
+      images: [
+        require("../Pictures/Sol and Luna Blanket.jpg"),
+        require("../Pictures/Sol and Luna Blanket 1.jpg"),
+        require("../Pictures/Sol and Luna Blanket 2.jpg"),
+      ],
       hoverImage: require("../Pictures/Sol and Luna Blanket 1.jpg"),
       price: 299.00,
     },
     {
       id: 23,
       name: "Sol and Luna Dream Catcher",
-      image: require("../Pictures/Sol and Luna Dream Catcher.jpg"),
+      images: [
+        require("../Pictures/Sol and Luna Dream Catcher.jpg"),
+        require("../Pictures/Sol and Luna Dream Catcher 1.jpg"),
+        require("../Pictures/Sol and Luna Dream Catcher 2.jpg"),
+      ],
       hoverImage: require("../Pictures/Sol and Luna Dream Catcher 1.jpg"),
       price: 150.00,
     },
     {
       id: 24,
       name: "Super Moon Bundle",
-      image: require("../Pictures/Super Moon Bundle.jpg"),
+      images: [
+        require("../Pictures/Super Moon Bundle.jpg"),
+        require("../Pictures/Super Moon Bundle 1.jpg"),
+        require("../Pictures/Super Moon Bundle 2.jpg"),
+      ],
       hoverImage: require("../Pictures/Super Moon Bundle 1.jpg"),
       price: 499.00,
     },
     {
       id: 25,
       name: "Tsuki Bookmark",
-      image: require("../Pictures/Tsuki Bookmark.jpg"),
+      images: [
+        require("../Pictures/Tsuki Bookmark.jpg"),
+        require("../Pictures/Tsuki Bookmark 1.jpg"),
+        require("../Pictures/Tsuki Bookmark 2.jpg"),
+      ],
       hoverImage: require("../Pictures/Tsuki Bookmark 1.jpg"),
       price: 50.00,
     },
     {
       id: 26,
       name: "Tsuki Calendar and Calendar Guide",
-      image: require("../Pictures/Tsuki Calendar and Calendar Guide.jpg"),
+      images: [
+        require("../Pictures/Tsuki Calendar and Calendar Guide.jpg"),
+        require("../Pictures/Tsuki Calendar and Calendar Guide 1.jpg"),
+        require("../Pictures/Tsuki Calendar and Calendar Guide 2.jpg"),
+      ],
       hoverImage: require("../Pictures/Tsuki Calendar and Calendar Guide 1.jpg"),
       price: 150.00,
     },
     {
       id: 27,
       name: "Tsuki Greeting Cards x 12",
-      image: require("../Pictures/Tsuki Greeting Cards x12.jpg"),
+      images: [
+        require("../Pictures/Tsuki Greeting Cards x12.jpg"),
+        require("../Pictures/Tsuki Greeting Cards x12 1.jpg"),
+        require("../Pictures/Tsuki Greeting Cards x12 2.jpg"),
+      ],
       hoverImage: require("../Pictures/Tsuki Greeting Cards x12 1.jpg"),
       price: 199.00,
     },
     {
       id: 28,
       name: "Tsuki Journal",
-      image: require("../Pictures/Tsuki Journal.jpg"),
+      images: [
+        require("../Pictures/Tsuki Journal.jpg"),
+        require("../Pictures/Tsuki Journal 1.jpg"),
+        require("../Pictures/Tsuki Journal 2.jpg"),
+      ],
       hoverImage: require("../Pictures/Tsuki Journal 1.jpg"),
       price: 199.00,
     },
     {
       id: 29,
       name: "Tsuki Lamp",
-      image: require("../Pictures/Tsuki Lamp.jpg"),
+      images: [
+        require("../Pictures/Tsuki Lamp.jpg"),
+        require("../Pictures/Tsuki Lamp 1.jpg"),
+      ],
       hoverImage: require("../Pictures/Tsuki Lamp 1.jpg"),
       price: 399.00,
     },
     {
       id: 30,
       name: "Tsuki Notepad Combo",
-      image: require("../Pictures/Tsuki Notepad Combo.jpg"),
+      images: [
+        require("../Pictures/Tsuki Notepad Combo.jpg"),
+        require("../Pictures/Tsuki Notepad Combo 1.jpg"),
+        require("../Pictures/Tsuki Notepad Combo 2.jpg"),
+      ],
       hoverImage: require("../Pictures/Tsuki Notepad Combo.jpg"),
       price: 199.00,
     },
     {
       id: 31,
       name: "Tsuki Shelf",
-      image: require("../Pictures/Tsuki Shelf.jpg"),
+      images: [
+        require("../Pictures/Tsuki Shelf.jpg"),
+        require("../Pictures/Tsuki Shelf 1.jpg"),
+        require("../Pictures/Tsuki Shelf 2.jpg"),
+      ],
       hoverImage: require("../Pictures/Tsuki Shelf 1.jpg"),
       price: 299.00,
     },
     {
       id: 32,
       name: "Tsuki Tote Bag",
-      image: require("../Pictures/Tsuki Tote Bag.jpg"),
+      images: [
+        require("../Pictures/Tsuki Tote Bag.jpg"),
+        require("../Pictures/Tsuki Tote Bag 1.jpg"),
+      ],
       hoverImage: require("../Pictures/Tsuki Tote Bag 1.jpg"),
       price: 350.00,
     },
     {
       id: 33,
       name: "Vintage Stationary Set",
-      image: require("../Pictures/Vintage Stationary Set.jpg"),
+      images: [
+        require("../Pictures/Vintage Stationary Set.jpg"),
+        require("../Pictures/Vintage Stationary Set 1.jpg"),
+        require("../Pictures/Vintage Stationary Set 2.jpg"),
+      ],
       hoverImage: require("../Pictures/Vintage Stationary Set 1.jpg"),
       price: 299.00,
     },
     {
       id: 34,
       name: "Vintage Writer's Set",
-      image: require("../Pictures/Vintage Writer's Set.jpg"),
+      images: [
+        require("../Pictures/Vintage Writer's Set.jpg"),
+        require("../Pictures/Vintage Writer's Set 1.jpg"),
+        require("../Pictures/Vintage Writer's Set 2.jpg"),
+      ],
       hoverImage: require("../Pictures/Vintage Writer's Set 1.jpg"),
       price: 299.00,
     },
     {
       id: 35,
       name: "Writer's Set",
-      image: require("../Pictures/Writer's Set.jpg"),
+      images: [
+        require("../Pictures/Writer's Set.jpg"),
+        require("../Pictures/Writer's Set 1.jpg"),
+        require("../Pictures/Writer's Set 2.jpg"),
+      ],
       hoverImage: require("../Pictures/Writer's Set 1.jpg"),
       price: 199.00,
     },
     {
       id: 36,
       name: "Zodiac Calendar",
-      image: require("../Pictures/Zodiac Calendar.jpg"),
+      images: [
+        require("../Pictures/Zodiac Calendar.jpg"),
+        require("../Pictures/Zodiac Calendar 1.jpg"),
+        require("../Pictures/Zodiac Calendar 2.jpg"),
+      ],
       hoverImage: require("../Pictures/Zodiac Calendar 1.jpg"),
       price: 199.00,
     },
     {
       id: 37,
       name: "Zodiac Prints Set",
-      image: require("../Pictures/Zodiac Prints Set.jpg"),
+      images: [
+        require("../Pictures/Zodiac Prints Set.jpg"),
+        require("../Pictures/Zodiac Prints Set 1.jpg"),
+      ],
       hoverImage: require("../Pictures/Zodiac Prints Set 1.jpg"),
       price: 199.00,
     },
     {
       id: 38,
       name: "Zodiac Tote Bag",
-      image: require("../Pictures/Zodiac Tote Bag.jpg"),
+      images: [
+        require("../Pictures/Zodiac Tote Bag.jpg"),
+        require("../Pictures/Zodiac Tote Bag 1.jpg"),
+      ],
       hoverImage: require("../Pictures/Zodiac Tote Bag 1.jpg"),
       price: 350.00,
     },
     {
       id: 39,
       name: "Sakura Pencil Case",
-      image: require("../Pictures/Sakura Pencil Case.png"),
+      images: [
+        require("../Pictures/Sakura Pencil Case.png"),
+        require("../Pictures/Sakura Pencil Case 1.png"),
+      ],
       hoverImage: require("../Pictures/Sakura Pencil Case 1.png"),
       price: 199.00,
     },
     {
       id: 40,
       name: "Kawaii Pen Pouch",
-      image: require("../Pictures/Kawaii Pen Pouch.png"),
+      images: [
+        require("../Pictures/Kawaii Pen Pouch.png"),
+        require("../Pictures/Kawaii Pen Pouch 1.png"),
+      ],
       hoverImage: require("../Pictures/Kawaii Pen Pouch 1.png"),
       price: 350.00,
     },
@@ -357,10 +503,10 @@ const Categories = () => {
                   e.currentTarget.querySelector("img").src = item.hoverImage;
                 }}
                 onMouseLeave={(e) => {
-                  e.currentTarget.querySelector("img").src = item.image;
+                  e.currentTarget.querySelector("img").src = item.image || item.images[0];
                 }}
               >
-                <img src={item.image} alt={item.name} />
+                <img src={item.image || item.images[0]} alt={item.name} />
               </div>
               <div className="details">
                 <h3 className="name">{item.name}</h3>

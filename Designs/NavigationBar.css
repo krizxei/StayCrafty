@@ -9,6 +9,19 @@
   width: 250px;
 }
 
+.hovered {
+  display: flex;
+  flex-direction: row; /* Or column */
+  transition: flex-direction 0.3s ease; /* Smooth transition */
+}
+
+.non-hovered {
+  display: flex;
+  flex-direction: column;
+  transition: flex-direction 0.3s ease;
+}
+
+
 .NavigationBar .search-bar {
   border: none;
   outline: none;
