@@ -11,10 +11,6 @@ const ItemDetails = () => {
 
   const handleBack = () => navigate(-1); // Go back to the previous page
 
-  const handleAddToCart = () => {
-    alert(`Added ${quantity} of "${item.name}" to cart!`);
-  };
-
   const handleQuantityChange = (type) => {
     setQuantity((prev) => (type === "increment" ? prev + 1 : Math.max(1, prev - 1)));
   };
@@ -27,6 +23,48 @@ const ItemDetails = () => {
   const handlePrevImage = () => {
     const prevIndex = (currentImageIndex - 1 + item.images.length) % item.images.length; // Loop to the last image if at the beginning
     setCurrentImageIndex(prevIndex);
+  };
+
+  const handleAddToCart = () => {
+    alert('Added to Cart');
+
+    /*
+    const email = localStorage.getItem("email"); // Make sure the email is stored during login
+    if (!email) {
+      alert("Please log in to add items to your cart.");
+      return;
+    }
+
+    const productName = item.name; // Get the name of the product
+    const productQuantity = quantity;
+
+    console.log(email, productName, productQuantity);
+
+    // Send the data to the backend API to add the product to the cart
+    fetch("http://localhost:5000/api/AddToCart", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        email: email,
+        productName: productName,
+        quantity: productQuantity,
+      }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.success) {
+          alert(`${productQuantity} of "${productName}" added to cart!`);
+        } else {
+          alert(data.message || "Error adding to cart.");
+        }
+      })
+      .catch((error) => {
+        alert("An error occurred while adding to the cart.");
+        console.error("Error:", error);
+      });
+      */
   };
 
   return (
@@ -53,7 +91,7 @@ const ItemDetails = () => {
           <p className={`stock-status ${item.stock > 0 ? "in-stock" : "out-of-stock"}`}>
             {item.stock > 0 ? "Selling Fast" : "Out of Stock"}
           </p>
-           <div className="quantity-selector">
+          <div className="quantity-selector">
             <label>Quantity:</label>
             <button className="quantity-btn" onClick={() => handleQuantityChange("decrement")}>-</button>
             <span className="quantity-display">{quantity}</span>

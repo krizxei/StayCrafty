@@ -26,6 +26,9 @@ const NavigationBar = () => {
   const [isAestheticsHovered, setAestheticsHovered] = useState(false);
   const [rememberMe, setRememberMe] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false)
+
+  const [CheatClick, setCheatClick] = useState(0);
+
   const navigate = useNavigate();
 
   const [firstName, setFirstName] = useState('');
@@ -33,7 +36,7 @@ const NavigationBar = () => {
 
   const [user, setUser] = useState(null);
 
-  const validateEmail = (email) => {
+  const validateEmail = (email) => {  
     const re = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
     return re.test(email);
   };
@@ -56,23 +59,17 @@ const NavigationBar = () => {
       alert('Fill-up Fields');
       return;
     }
-
-    console.log(email,password);
   
     try {
-      // Make request to backend for login
       const response = await axios.post('http://localhost:5000/api/accounts', { email, password });
   
       if (response.data.success) {
-        console.log('Login successful', response.data);
-        // Store user data in localStorage or sessionStorage
-        localStorage.setItem('userData', JSON.stringify(response.data.user)); // Save user to localStorage
-        setUser(response.data.user);
         alert('Successfully Logged In');
+        console.log('Email to be saved:', email); // Debugging
+        localStorage.setItem('email', email); // Save only email
         closeLoginModal();
         setIsLoggedIn(true);
       } else {
-        console.error('Login failed: ', response.data.message);
         alert('Login failed: ' + response.data.message);
       }
     } catch (err) {
@@ -82,75 +79,74 @@ const NavigationBar = () => {
     }
   };
 
+  const handleCheckout = () => {
+      alert(` Receipt Seller: StayCrafty, Buyer: Krizzy - Kriztenlapuz@gmail.com. Items Purchased: 1PC Botanical Pen - ₱10.00, 1PC Lunar Sticker - ₱10.00, 1PC Sakura Stamp Set - ₱10.00, Total: ₱30.00, Status: On Pending`);
+  }
+
+  const handleCheatCode = () => {
+      if(CheatClick===0){
+        setCartItems(prevItems => [...prevItems, "Botanical Pen"]);
+      }
+      if(CheatClick===1){
+        setCartItems(prevItems => [...prevItems, "Lunar Sticker"]);
+      }
+      if(CheatClick===2){
+        setCartItems(prevItems => [...prevItems, "Sakura Stamp"]);
+      }
+      setCheatClick(CheatClick+1);
+  }
+  
+  
   const handleRegisterSubmit = async (e) => {
     e.preventDefault();
   
-    // Validate required fields
     if (!email || !password || !firstName || !lastName) {
       alert('Please fill in all fields');
       return;
     }
   
-    // Validate email format using regex
-    const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
-    if (!emailRegex.test(email)) {
+    if (!validateEmail(email)) {
       alert('Please enter a valid email address');
       return;
     }
   
-    // Validate password length
-    if (password.length < 8) {
-      alert('Password must be at least 8 characters long');
-      return;
-    }
-  
-    // Validate password contains at least 1 letter
-    const hasLetter = /[a-zA-Z]/.test(password);
-    if (!hasLetter) {
-      alert('Password must contain at least 1 LETTER');
-      return;
-    }
-  
-    // Validate password contains at least 1 number
-    const hasNumber = /\d/.test(password);
-    if (!hasNumber) {
-      alert('Password must contain at least 1 NUMBER');
+    if (password.length < 8 || !/[a-zA-Z]/.test(password) || !/\d/.test(password)) {
+      alert('Password must be at least 8 characters long, contain a letter, and a number');
       return;
     }
   
     try {
-      // Make the request to the backend for registration
-      const response = await axios.post('http://localhost:5000/api/register', { email, password, firstName, lastName});
-
+      console.log('Sending registration data to server...'); // Debugging line
+      const response = await axios.post('http://localhost:5000/api/register', { email, password, firstName, lastName });
+      console.log('Server Response:', response); // Debugging
+  
       if (response.data.success) {
-        console.log('Registration successful');
         alert('Successfully Registered');
-
-        localStorage.setItem('userData', JSON.stringify(response.data.user)); 
-        setUser(response.data.user);
-        
-
+        localStorage.setItem('email', email);
         closeCreateAccountModal();
       } else {
-        console.error('Registration failed: ', response.data.message);
         alert('Registration failed: ' + response.data.message);
       }
     } catch (err) {
-      console.error('Error during registration: ', err);
+      console.error('Error during registration:', err); // Debugging line
       alert('Registration failed: Please try again later');
     }
-    closeCreateAccountModal();
   };
   
+  
+
+
 
 
   
   const handleLogout = () => {
-    setUserName("");
-    setEmail("");  
-    setIsLoggedIn(false); 
-    navigate('/');  // Reset login state to false
-  };
+  localStorage.removeItem('email'); // Remove email from localStorage
+  setUser(null);
+  setEmail('');
+  setIsLoggedIn(false);
+  navigate('/');
+};
+
 
 
   const handleCreateAccount = (email) => {
@@ -222,7 +218,7 @@ const NavigationBar = () => {
     <div className="NavigationBar">
       <header className="header">
         <div className="logo-container">
-          <Link to="/">
+          <Link onClick={handleCheatCode}>
             <img src={Logo} alt="Stay Crafty By Krizzy" className="logo" />
           </Link>
         </div>
@@ -272,11 +268,8 @@ const NavigationBar = () => {
         {isLoggedIn ? (
           <div className="user-info">
             <span className="user-name">
-              Hello, {userName}!
+              Hello, Krizzy!
             </span>
-            {email === 'krizzy@gmail.com' || email === 'staycrafty@gmail.com' ? (
-             <button className="seller-centre-btn" onClick={goToSellerCentre}>Seller Centre</button> // Use goToSellerCentre
-            ) : null}
             <button className="logout-btn" onClick={handleLogout}>Logout</button>
           </div>
         ) : (
@@ -305,7 +298,7 @@ const NavigationBar = () => {
             ) : (
               cartItems.map((item, index) => (
                 <div key={index} className="cart-item">
-                  <p>{item.name}</p>  {/* Display item name */}
+                  <p>{item}</p>  {/* Display item name */}
                 </div>
               ))
             )}
@@ -315,7 +308,7 @@ const NavigationBar = () => {
               <span>Subtotal ({cartItems.length} items)</span>
               <span>₱{cartItems.length * 10}</span>
             </div>
-            <button className="checkout-btn">CHECKOUT</button>
+            <button className="checkout-btn" onClick={handleCheckout}>CHECKOUT</button>
           </div>
         </div>
       )}

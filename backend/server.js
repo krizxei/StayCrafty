@@ -5,20 +5,18 @@ const cors = require('cors');
 const app = express();
 const port = 5000;
 
-app.use(cors({
-  origin: 'http://localhost:3000', // Specify tnpmhe allowed frontend origin
-  methods: ['GET', 'POST'], // Allowed HTTP methods
-}));
+// Middleware
+app.use(cors({ origin: 'http://localhost:3000', methods: ['GET', 'POST'] }));
+app.use(express.json());
 
-// Create a connection to the MySQL database
+// MySQL Connection
 const db = mysql.createConnection({
   host: 'localhost',
-  user: 'root', // MySQL username
-  password: 'yukimaru211x', // MySQL password
-  database: 'staycrafty', // Your database name
+  user: 'root',
+  password: 'yukimaru211x',
+  database: 'staycrafty',
 });
 
-// Connect to MySQL
 db.connect((err) => {
   if (err) {
     console.error('Database connection failed:', err.stack);
@@ -27,10 +25,7 @@ db.connect((err) => {
   console.log('Connected to MySQL database');
 });
 
-// Set up middleware to parse JSON
-app.use(express.json());
-
-// Handle Login
+// Login Route
 app.post('/api/accounts', (req, res) => {
   const { email, password } = req.body;
 
@@ -38,7 +33,6 @@ app.post('/api/accounts', (req, res) => {
     return res.status(400).json({ success: false, message: 'Please provide both email and password' });
   }
 
-  // Query to check if the user exists by email and compare the password
   db.query('SELECT * FROM account_info WHERE email = ? AND password = ?', [email, password], (err, results) => {
     if (err) {
       return res.status(500).json({ success: false, message: 'Database error' });
@@ -50,65 +44,86 @@ app.post('/api/accounts', (req, res) => {
 
     const user = results[0];
 
-    // If the password matches, send a success response
     res.status(200).json({
       success: true,
       message: 'Login successful',
       user: {
-        email: user.Email,
-        username: user.Username,
-      }
+        email: email,
+        username: email,
+      },
     });
   });
 });
 
-// Handle Registration
-app.post('/api/register', (req, res) => {
-  const { email, password, firstName, lastName} = req.body;
+// Registration Route
+app.post('/api/create-account', (req, res) => {
+  const { email, password, firstName, lastName } = req.body;
+
+  if (!email || !password || !firstName || !lastName) {
+    return res.status(400).json({ success: false, message: 'All fields are required' });
+  }
+
+  const query = 'INSERT INTO account_info (email, password, first_name, last_name) VALUES (?, ?, ?, ?)';
+  db.query(query, [email, password, firstName, lastName], (err, result) => {
+    if (err) {
+      console.error('Error inserting data into the database:', err);
+      return res.status(500).json({ success: false, message: 'Registration failed due to a database error' });
+    }
+
+    console.log('Insert Result:', result);
+    res.status(201).json({ success: true, message: 'Registration successful' });
+  });
+});
+
+// Add to Cart API
+app.post('/api/AddToCart', (req, res) => {
+  const { email, productName, quantity } = req.body;
 
   console.log(req.body);
 
-  if (!firstName || !lastName || !email || !password) {
+  if (!email || !productName || !quantity) {
     return res.status(400).json({ success: false, message: 'Please provide all required fields' });
   }
 
-  // Check if the email already exists
-  db.query('SELECT * FROM account_info WHERE email = ?', [email], (err, results) => {
+  // Check if the product is already in the cart for the given email
+  db.query(
+    `UPDATE account_cart SET ${productName} = ? WHERE email = ?`,
+    [quantity, email],
+    (err, results) => {
+      if (err) {
+        return res.status(500).json({ success: false, message: 'Database error' });
+      }
+
+      res.status(200).json({ success: true, message: 'Product added to cart successfully' });
+    }
+  );
+});
+
+app.post('/api/cart-check', (req, res) => {
+  const { email, productName } = req.body;
+
+  if (!email || !productName) {
+    return res.status(400).json({ success: false, message: 'Please provide email and product name' });
+  }
+
+  // Check if the product already exists in the user's cart
+  db.query('SELECT * FROM account_cart WHERE email = ? AND product_name = ?', [email, productName], (err, results) => {
     if (err) {
       return res.status(500).json({ success: false, message: 'Database error' });
     }
 
     if (results.length > 0) {
-      return res.status(400).json({ success: false, message: 'Email already in use' });
+      return res.status(200).json({ success: false, message: 'Product already in cart' });
     }
 
-    // Insert the new user into the database
-    db.query(
-      'INSERT INTO account_info (email, password, firstName, lastName) VALUES (?, ?, ?, ?)',
-      [email, password, firstName, lastName],
-      (err, results) => {
-        if (err) {
-          return res.status(500).json({ success: false, message: 'Error registering user' });
-        }
-
-        db.query('SELECT * FROM account_info WHERE Email = ?', [email], (err, userResults) => {
-          if (err) {
-            return res.status(500).json({ success: false, message: 'Error fetching user data' });
-          }
-
-        res.status(201).json({ success: true, message: 'Registration successful'});
-      });
+    // Insert product into the cart if not already added
+    db.query('INSERT INTO account_cart (email, product_name) VALUES (?, ?)', [email, productName], (err, result) => {
+      if (err) {
+        return res.status(500).json({ success: false, message: 'Error adding to cart' });
       }
-    );
 
-    db.query(
-      'INSERT INTO account_info (email) VALUES (?)', [email],
-      (err, results) => {
-        if (err) {
-          return res.status(500).json({ success: false, message: 'Error registering user' });
-        }
-      }
-    )
+      return res.status(200).json({ success: true, message: 'Product added to cart' });
+    });
   });
 });
 
