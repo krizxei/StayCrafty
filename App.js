@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";  // Import Routes and Route from react-router-dom
 import Homepage from "./Screens/Homepage.js"; 
 import Categories from "./Screens/Categories.js";
@@ -10,18 +10,29 @@ import { CartProvider } from "./Screens/CartContext.js";
 import SellerCentre from './Screens/SellerCentre.js';
 
 function App() {
+
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    // Retrieve user from localStorage (if exists)
+    const storedUser = localStorage.getItem('user');
+    if (storedUser) {
+      setUser(JSON.parse(storedUser));
+    }
+  }, []);
+
   return (
     <CartProvider>
       <Router>
         
         {/* Define Routes */}
         <Routes>
-          <Route path="/" element={<Homepage />} />
+          <Route path="/" element={<Homepage user={user}/>} />
           <Route path="/categories" element={<Categories />} />
-          <Route path="/bestsellers" element={<Bestsellers />} />
+          <Route path="/bestsellers" element={<Bestsellers/>} />
           <Route path="/new" element={<New />} />
           <Route path="/aesthetic" element={<Aesthetic />} />
-          <Route path="/seller-centre" element={<SellerCentre />} />
+          <Route path="/seller-centre" element={<SellerCentre  user={user}/>} />
           <Route path="/item/:id" element={<ItemDetails />} />
           <Route path="/journals" element={<Categories category="Journal" />} />
           <Route path="/pen" element={<Categories category="Pen" />} />

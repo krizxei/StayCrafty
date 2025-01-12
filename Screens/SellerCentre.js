@@ -1,9 +1,15 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import NavigationBar from "./NavigationBar"; // Import the navigation bar component
 import "../Designs/SellerCentre.css"; // Add any specific styles for SellerCentre
 
-const SellerCentre = () => {
+const SellerCentre = ({user}) => {
+    useEffect(() => {
+      if (user) {
+        localStorage.setItem('user', JSON.stringify(user));
+      }
+    }, [user]);
+
   const [products, setProducts] = useState([
     // Same structure as in Categories.js for products
     {

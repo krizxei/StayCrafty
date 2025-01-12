@@ -4,6 +4,7 @@ import "../Designs/NavigationBar.css";
 import Logo from "../Pictures/Logo Zoom.png";
 import UserIcon from "../Pictures/People Icon.png";
 import CartIcon from "../Pictures/Cart Icon.png";
+import axios from 'axios';
 
 const NavigationBar = () => {
   const [isLoginModalOpen, setLoginModalOpen] = useState(false);
@@ -27,6 +28,11 @@ const NavigationBar = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false)
   const navigate = useNavigate();
 
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
+
+  const [user, setUser] = useState(null);
+
   const validateEmail = (email) => {
     const re = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
     return re.test(email);
@@ -45,55 +51,99 @@ const NavigationBar = () => {
   const closeCart = () => setCartOpen(false); 
   const [dropdownVisible, setDropdownVisible] = useState(false);
 
-  const handleLogin = () => {
-    setWarning(""); 
+  const handleLogin = async () => {
     if (!email || !password) {
-      setWarning("Input first!");
+      alert('Fill-up Fields');
       return;
     }
-    if (!validateEmail(email)) {
-      setWarning("Please enter a valid email!");
-      return;
-    }
-    if (password.length < 8) {
-      setWarning("Password should be at least 8 characters");
-      return;
-    }
+
+    console.log(email,password);
   
-    // Check for admin email first
-    if (email === 'krizzy@gmail.com' || email === 'staycrafty@gmail.com') {
-      setIsLoggedIn(true);
-      setUserName("Admin User");  // You can display "Admin User" or the actual name if you want
-      closeLoginModal();
-      setWarning(""); 
-      return; // Skip user lookup for admin emails
-    }
+    try {
+      // Make request to backend for login
+      const response = await axios.post('http://localhost:5000/api/accounts', { email, password });
   
-    // Look for the user in the normal user list
-    const user = users.find((user) => user.email === email);
-    if (!user) {
-      setWarning("No account registered with this email. Please create an account first.");
-      return;
+      if (response.data.success) {
+        console.log('Login successful', response.data);
+        // Store user data in localStorage or sessionStorage
+        localStorage.setItem('userData', JSON.stringify(response.data.user)); // Save user to localStorage
+        setUser(response.data.user);
+        alert('Successfully Logged In');
+        closeLoginModal();
+        setIsLoggedIn(true);
+      } else {
+        console.error('Login failed: ', response.data.message);
+        alert('Login failed: ' + response.data.message);
+      }
+    } catch (err) {
+      alert('Invalid Credentials');
+      setPassword('');
+      setEmail('');
     }
-  
-    if (user.password !== password) {
-      setWarning("Wrong password! Please try again.");
-      return;
-    }
-  
-    // Store credentials in localStorage if "Remember Me" is checked
-    if (rememberMe) {
-      localStorage.setItem('email', email);
-      localStorage.setItem('password', password);
-    } else {
-      localStorage.removeItem('email');
-      localStorage.removeItem('password');
-    }
-  
-    setIsLoggedIn(true); 
-    closeLoginModal();
-    setWarning(""); 
   };
+
+  const handleRegisterSubmit = async (e) => {
+    e.preventDefault();
+  
+    // Validate required fields
+    if (!email || !password || !firstName || !lastName) {
+      alert('Please fill in all fields');
+      return;
+    }
+  
+    // Validate email format using regex
+    const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+    if (!emailRegex.test(email)) {
+      alert('Please enter a valid email address');
+      return;
+    }
+  
+    // Validate password length
+    if (password.length < 8) {
+      alert('Password must be at least 8 characters long');
+      return;
+    }
+  
+    // Validate password contains at least 1 letter
+    const hasLetter = /[a-zA-Z]/.test(password);
+    if (!hasLetter) {
+      alert('Password must contain at least 1 LETTER');
+      return;
+    }
+  
+    // Validate password contains at least 1 number
+    const hasNumber = /\d/.test(password);
+    if (!hasNumber) {
+      alert('Password must contain at least 1 NUMBER');
+      return;
+    }
+  
+    try {
+      // Make the request to the backend for registration
+      const response = await axios.post('http://localhost:5000/api/register', { email, password, firstName, lastName});
+
+      if (response.data.success) {
+        console.log('Registration successful');
+        alert('Successfully Registered');
+
+        localStorage.setItem('userData', JSON.stringify(response.data.user)); 
+        setUser(response.data.user);
+        
+
+        closeCreateAccountModal();
+      } else {
+        console.error('Registration failed: ', response.data.message);
+        alert('Registration failed: ' + response.data.message);
+      }
+    } catch (err) {
+      console.error('Error during registration: ', err);
+      alert('Registration failed: Please try again later');
+    }
+    closeCreateAccountModal();
+  };
+  
+
+
   
   const handleLogout = () => {
     setUserName("");
@@ -103,26 +153,13 @@ const NavigationBar = () => {
   };
 
 
-  const handleCreateAccount = (firstName, lastName, email, password) => {
-    if (email === 'krizzy@gmail.com' || email === 'staycrafty@gmail.com') {
-      setWarning("This email is already associated with an admin account.");
-      return; // Prevent creating an account for admin emails
-    }
-    if (!firstName || !lastName || !email || !password) {
-      setWarning("All fields are required!");
-      return;
-    }
-    if (!validateEmail(email)) {
-      setWarning("Please enter a valid email!");
-      return;
-    }
-    if (password.length < 8) {
-      setWarning("Password should be at least 8 characters");
-      return;
-    }
-  
-    setUsers([...users, { firstName, lastName, email, password }]);
-    setUserName(firstName);
+  const handleCreateAccount = (email) => {
+    // Save the email as the username in localStorage
+    localStorage.setItem("username", email); 
+    
+    // Optionally, you can add other actions related to account creation here.
+    
+    // Close the modal after account creation
     closeCreateAccountModal();
   };
   
@@ -284,66 +321,64 @@ const NavigationBar = () => {
       )}
 
       {/* Login, Create Account, and Forgot Password Modals */}
-      {isLoginModalOpen && (
-        <div className="modal">
-          <div className="modal-content">
-            <div className="modal-logo-container">
-              <img src={Logo} alt="Logo" className="modal-logo" />
+        {isLoginModalOpen && (
+          <div className="modal">
+            <div className="modal-content">
+              <div className="modal-logo-container">
+                <img src={Logo} alt="Logo" className="modal-logo" />
+              </div>
+              <h2>Login to Your Account</h2>
+              <input
+                type="email"
+                placeholder="Email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
+              <input
+                type="password"
+                placeholder="Password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
+              <input
+                type="checkbox"
+                id="rememberMe"
+                checked={rememberMe}
+                onChange={() => setRememberMe(!rememberMe)}
+              />
+              <label htmlFor="rememberMe">Remember Me</label>
+
+              {warning && <div style={{ color: 'red' }}>{warning}</div>}
+              <button onClick={() => handleLogin(email)}>Login</button> {/* Pass email to handleLogin */}
+              <button onClick={openForgotPasswordModal}>Forgot Password?</button>
+              <p>New to our shop?</p>
+              <button onClick={openCreateAccountModal}>Create an Account</button>
+              <button onClick={closeLoginModal}>Close</button>
             </div>
-            <h2>Login to Your Account</h2>
-            <input
-              type="email"
-              placeholder="Email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-            />
-            <input
-              type="password"
-              placeholder="Password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            />
-            <input
-              type="checkbox"
-              id="rememberMe"
-              checked={rememberMe}
-              onChange={() => setRememberMe(!rememberMe)}
-            />
-            <label htmlFor="rememberMe">Remember Me</label>
-
-            {warning && <div style={{ color: 'red' }}>{warning}</div>}
-            <button onClick={handleLogin}>Login</button>
-            <button onClick={openForgotPasswordModal}>Forgot Password?</button>
-            <p>New to our shop?</p>
-            <button onClick={openCreateAccountModal}>Create an Account</button>
-            <button onClick={closeLoginModal}>Close</button>
           </div>
-        </div>
-      )}
+        )}
 
-      {isCreateAccountModalOpen && (
-        <div className="modal">
-          <div className="modal-content">
-            <h2>Create an Account</h2>
-            <input type="text" placeholder="First Name" id="firstName" />
-            <input type="text" placeholder="Last Name" id="lastName" />
-            <input type="email" placeholder="Email" id="emailCreate" />
-            <input type="password" placeholder="Password" id="passwordCreate" />
-            <button
-              onClick={() => {
-                const firstName = document.getElementById('firstName').value;
-                const lastName = document.getElementById('lastName').value;
-                const emailCreate = document.getElementById('emailCreate').value;
-                const passwordCreate = document.getElementById('passwordCreate').value;
-                handleCreateAccount(firstName, lastName, emailCreate, passwordCreate);
-              }}
-            >
-              Create Account
-            </button>
-            <button onClick={closeCreateAccountModal}>Close</button>
-          </div>
-        </div>
-      )}
+
+
+          {isCreateAccountModalOpen && (
+            <div className="modal">
+              <div className="modal-content">
+                <h2>Create an Account</h2>
+                <input type="text" placeholder="First Name" value={firstName} onChange={(e) => setFirstName(e.target.value)} />
+                <input type="text" placeholder="Last Name" value={lastName} onChange={(e) => setLastName(e.target.value)}/>
+                <input type="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)}/>
+                <input type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)}/>
+                <button
+                  onClick={handleRegisterSubmit}
+                >
+                  Create Account
+                </button>
+                <button onClick={closeCreateAccountModal}>Close</button>
+              </div>
+            </div>
+          )}
+
+
 
       {isForgotPasswordModalOpen && (
         <div className="modal">

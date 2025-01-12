@@ -150,4 +150,7 @@
     object-fit: cover;
     border-radius: 8px;
   }
-  
+  .add-to-cart:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+  }

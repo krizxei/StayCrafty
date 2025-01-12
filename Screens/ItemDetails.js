@@ -50,14 +50,20 @@ const ItemDetails = () => {
           <h2>⭐⭐⭐⭐⭐</h2>
           <p className="price">₱{item.price}</p>
           <p>{item.description || "No description available."}</p>
-          <p className="stock-status">Selling Fast</p>
-          <div className="quantity-selector">
+          <p className={`stock-status ${item.stock > 0 ? "in-stock" : "out-of-stock"}`}>
+            {item.stock > 0 ? "Selling Fast" : "Out of Stock"}
+          </p>
+           <div className="quantity-selector">
             <label>Quantity:</label>
             <button className="quantity-btn" onClick={() => handleQuantityChange("decrement")}>-</button>
             <span className="quantity-display">{quantity}</span>
             <button className="quantity-btn" onClick={() => handleQuantityChange("increment")}>+</button>
           </div>
-          <button onClick={handleAddToCart} className="add-to-cart">
+          <button
+            onClick={handleAddToCart}
+            className="add-to-cart"
+            disabled={item.stock === 0} // Disable the button when out of stock
+          >
             Add to Cart
           </button>
         </div>
