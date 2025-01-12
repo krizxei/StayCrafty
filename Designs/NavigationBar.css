@@ -366,3 +366,64 @@
 .NavigationBar .dropdown li a:hover {
   color: #ee97be;
 }
+
+.NavigationBar .user-info.logout-btn {
+  background-color: #a72f68; /* Change to your desired color */
+  color: white;
+  border: none;
+  border-radius: 25px;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.NavigationBar .logout-btn:hover {
+  background-color: #ee97be; /* Change to the hover color */
+}
+.NavigationBar .remember-me {
+  display: flex;
+  align-items: center;
+  font-size: 1rem;
+  color: #a72f68; /* Label color */
+}
+
+.NavigationBar .remember-me input[type="checkbox"] {
+  margin-right: 10px;
+  accent-color: #a72f68; /* Customize checkbox color */
+}
+
+.NavigationBar .remember-me label {
+  font-weight: normal;
+  margin-left: 1px;
+}
+
+.seller-centre-btn {
+  background-color: #d883a8;
+  color: white;
+  border-radius: 5px;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  font-size: 12px;
+}
+
+.seller-centre-btn:hover {
+  background-color: #a72f68;
+}
+
+.logout-btn {
+  background-color: #ffa726; /* Red color for emphasis */
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 12px;
+  transition: background-color 0.3s ease;
+}
+
+.logout-btn:hover {
+  background-color: #a72f68; /* Slightly darker red on hover */
+}
+

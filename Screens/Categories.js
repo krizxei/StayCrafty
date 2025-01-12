@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import NavigationBar from "./NavigationBar.js"; // Import the navigation bar component
 import "../Designs/Categories.css"; // Categories-specific CSS
 
-const Categories = () => {
+const Categories = ({ category, theme }) => {
   const items = [
     {
       id: 1,
@@ -16,6 +16,8 @@ const Categories = () => {
       price: 150.00,
       description: "A beautiful botanical garland set perfect for decoration.",
       reviews: ["Amazing quality!", "Loved it!", "Perfect gift for friends."],
+      category: "Bundle",
+      theme: "Botanical",
     },
     {
       id: 2,
@@ -28,6 +30,8 @@ const Categories = () => {
       hoverImage: require("../Pictures/Botanical Pen 1.jpg"),
       price: 100.00,
       description: "Enhance your journaling experience with our laser engraved ballpoint pen in our botanical design. A weighted refillable brass ballpoint pen with a large blue ink cartridge and linear attachable cap. Please Note - It is natural for brass to patina over time as it reacts to the oxygen in the air and the oils from your skin called toning. We recommend cleaning with a brass polish.",
+      category: "Pen",
+      theme: "Botanical",
     },
     {
       id: 3,
@@ -466,6 +470,14 @@ const Categories = () => {
     setSortedItems(sorted);
   };
 
+  const filteredItems = items.filter(item => {
+    return (
+      (category ? item.category === category : true) &&
+      (theme ? item.theme === theme : true)
+    );
+  });
+
+
   return (
     <div className="categories">
       <NavigationBar />
@@ -492,6 +504,7 @@ const Categories = () => {
           <option value="priceHighLow">Price: High to Low</option>
         </select>
       </div>
+      
 
       <div className="items-grid">
         {sortedItems.map((item) => (
@@ -511,6 +524,34 @@ const Categories = () => {
               <div className="details">
                 <h3 className="name">{item.name}</h3>
                 <p className="price">₱{item.price}</p>
+                <p>Category: {item.category}</p>
+                <p>Theme: {item.theme}</p>
+              </div>
+            </Link>
+          </div>
+        ))}
+      </div>
+
+      <div className="product-list">
+        {filteredItems.map((item) => (
+          <div className="card" key={item.id}>
+            <Link to={`/item/${item.id}`} state={item} key={item.id} className="card-link">
+              <div
+                className="image-container"
+                onMouseEnter={(e) => {
+                  e.currentTarget.querySelector("img").src = item.hoverImage;
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.querySelector("img").src = item.image || item.images[0];
+                }}
+              >
+                <img src={item.image || item.images[0]} alt={item.name} />
+              </div>
+              <div className="details">
+                <h3 className="name">{item.name}</h3>
+                <p className="price">₱{item.price}</p>
+                <p>Category: {item.category}</p>
+                <p>Theme: {item.theme}</p>
               </div>
             </Link>
           </div>

@@ -7,7 +7,7 @@ const ItemDetails = () => {
   const { state: item } = useLocation(); // Get the item data passed through Link
   const navigate = useNavigate();
   const [quantity, setQuantity] = useState(1);
-  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0); // Track current image index
 
   const handleBack = () => navigate(-1); // Go back to the previous page
 
@@ -20,13 +20,12 @@ const ItemDetails = () => {
   };
 
   const handleNextImage = () => {
-    const nextIndex = (currentImageIndex + 1) % item.images.length; // Loop back to the first image if at the end
+    const nextIndex = (currentImageIndex + 1) % item.images.length; // Loop to the first image if at the end
     setCurrentImageIndex(nextIndex);
   };
 
-  const handlePreviousImage = () => {
-    const prevIndex =
-      (currentImageIndex - 1 + item.images.length) % item.images.length; // Loop back to the last image if at the start
+  const handlePrevImage = () => {
+    const prevIndex = (currentImageIndex - 1 + item.images.length) % item.images.length; // Loop to the last image if at the beginning
     setCurrentImageIndex(prevIndex);
   };
 
@@ -36,18 +35,14 @@ const ItemDetails = () => {
       <div className="item-layout">
         <div className="image-container">
           <button onClick={handleBack} className="back-button">❮ Back</button>
-          <div className="image-carousel">
-            <button className="nav-button" onClick={handlePreviousImage}>
-              ❮
-            </button>
+          <div className="image-navigation">
+            <button onClick={handlePrevImage} className="nav-button">❮</button>
             <img
               src={item.images[currentImageIndex]} // Display the current image
-              alt={item.name}
+              alt={`${item.name} ${currentImageIndex + 1}`}
               className="main-image"
             />
-            <button className="nav-button" onClick={handleNextImage}>
-              ❯
-            </button>
+            <button onClick={handleNextImage} className="nav-button">❯</button>
           </div>
         </div>
         <div className="item-info">

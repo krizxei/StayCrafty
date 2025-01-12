@@ -1,0 +1,36 @@
+.seller-centre {
+    padding: 20px;
+  }
+  
+  .seller-centre .back-btn {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .seller-centre .product-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+  
+  .seller-centre .product-item {
+    width: 200px;
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: center;
+  }
+  
+  .seller-centre .product-image {
+    width: 100%;
+    height: auto;
+  }
+  
+ .seller-centre .actions button {
+    margin: 5px;
+    padding: 5px 10px;
+    cursor: pointer;
+  }
+  

@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useState, useEffect } from 'react';
+import { Link, useNavigate } from "react-router-dom";
 import "../Designs/NavigationBar.css";
 import Logo from "../Pictures/Logo Zoom.png";
 import UserIcon from "../Pictures/People Icon.png";
@@ -19,13 +19,13 @@ const NavigationBar = () => {
   const [forgotPasswordLastName, setForgotPasswordLastName] = useState("");
   const [forgotPasswordBirthday, setForgotPasswordBirthday] = useState("");
   const [newPassword, setNewPassword] = useState(""); 
-
-  
   const [isCartOpen, setCartOpen] = useState(false); 
   const [cartItems, setCartItems] = useState([]);
-
   const [isAllCategoriesHovered, setAllCategoriesHovered] = useState(false);
   const [isAestheticsHovered, setAestheticsHovered] = useState(false);
+  const [rememberMe, setRememberMe] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false)
+  const navigate = useNavigate();
 
   const validateEmail = (email) => {
     const re = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
@@ -45,17 +45,8 @@ const NavigationBar = () => {
   const closeCart = () => setCartOpen(false); 
   const [dropdownVisible, setDropdownVisible] = useState(false);
 
-  let debounceTimer;
-  const handleMouseEnter = () => {
-    clearTimeout(debounceTimer);
-    debounceTimer = setTimeout(() => setAestheticsHovered(true), 100);
-  };
-  const handleMouseLeave = () => {
-    clearTimeout(debounceTimer);
-    debounceTimer = setTimeout(() => setAestheticsHovered(false), 100);
-  };
-
   const handleLogin = () => {
+    setWarning(""); 
     if (!email || !password) {
       setWarning("Input first!");
       return;
@@ -64,37 +55,78 @@ const NavigationBar = () => {
       setWarning("Please enter a valid email!");
       return;
     }
-    if (password.length > 8) {
-      setWarning("Password should be at most 8 characters");
+    if (password.length < 8) {
+      setWarning("Password should be at least 8 characters");
       return;
     }
-
-    
+  
+    // Check for admin email first
+    if (email === 'krizzy@gmail.com' || email === 'staycrafty@gmail.com') {
+      setIsLoggedIn(true);
+      setUserName("Admin User");  // You can display "Admin User" or the actual name if you want
+      closeLoginModal();
+      setWarning(""); 
+      return; // Skip user lookup for admin emails
+    }
+  
+    // Look for the user in the normal user list
     const user = users.find((user) => user.email === email);
     if (!user) {
       setWarning("No account registered with this email. Please create an account first.");
       return;
     }
-
+  
     if (user.password !== password) {
       setWarning("Wrong password! Please try again.");
       return;
     }
-
-    
-    setUserName(user.firstName);
+  
+    // Store credentials in localStorage if "Remember Me" is checked
+    if (rememberMe) {
+      localStorage.setItem('email', email);
+      localStorage.setItem('password', password);
+    } else {
+      localStorage.removeItem('email');
+      localStorage.removeItem('password');
+    }
+  
+    setIsLoggedIn(true); 
     closeLoginModal();
     setWarning(""); 
   };
+  
+  const handleLogout = () => {
+    setUserName("");
+    setEmail("");  
+    setIsLoggedIn(false); 
+    navigate('/');  // Reset login state to false
+  };
+
 
   const handleCreateAccount = (firstName, lastName, email, password) => {
-    setUsers([
-      ...users,
-      { firstName, lastName, email, password },
-    ]);
+    if (email === 'krizzy@gmail.com' || email === 'staycrafty@gmail.com') {
+      setWarning("This email is already associated with an admin account.");
+      return; // Prevent creating an account for admin emails
+    }
+    if (!firstName || !lastName || !email || !password) {
+      setWarning("All fields are required!");
+      return;
+    }
+    if (!validateEmail(email)) {
+      setWarning("Please enter a valid email!");
+      return;
+    }
+    if (password.length < 8) {
+      setWarning("Password should be at least 8 characters");
+      return;
+    }
+  
+    setUsers([...users, { firstName, lastName, email, password }]);
     setUserName(firstName);
     closeCreateAccountModal();
   };
+  
+
 
   const handleForgotPassword = () => {
     const user = users.find((user) => user.email === forgotPasswordEmail);
@@ -130,6 +162,25 @@ const NavigationBar = () => {
     setDropdownVisible(prevState => !prevState);
   };
 
+  const addItemToCart = (item) => {
+    setCartItems((prevItems) => [...prevItems, item]);
+  };
+
+  useEffect(() => {
+    const savedUsers = JSON.parse(localStorage.getItem('users')) || [];
+    setUsers(savedUsers);
+  }, []);
+  
+  const saveUsers = () => {
+    localStorage.setItem('users', JSON.stringify(users));
+  };
+  
+  const goToSellerCentre = () => {
+    console.log('Before navigation:', { isLoggedIn, email });
+    navigate('/seller-centre');
+    console.log('After navigation:', { isLoggedIn, email });
+  };
+
   return (
     <div className="NavigationBar">
       <header className="header">
@@ -156,9 +207,8 @@ const NavigationBar = () => {
                 </ul>
               )}
             </li>
-            <li><Link to="/bestsellers">Best Sellers✶</Link></li>
             <li className="nav-item"><Link to="/new"><span className="bubble new">New</span>Newest</Link></li>
-            <li className="nav-item"><Link to="/stock"><span className="bubble trending">Trending</span>Back in stock!</Link></li>
+            <li className="nav-item"><Link to="/bestsellers"><span className="bubble trending">Trending</span>Best Sellers✶</Link></li>
             <li 
               onMouseEnter={() => setAestheticsHovered(true)} 
               onMouseLeave={() => setAestheticsHovered(false)}
@@ -179,22 +229,32 @@ const NavigationBar = () => {
           </ul>
         </nav>
         <div className="header-icons">
-          <div className="search-bar-container">
-            <input
-              type="text"
-              className="search-bar"
-              placeholder="Search..."
-            />
+        <div className="search-bar-container">
+          <input type="text" className="search-bar" placeholder="Search..." />
+        </div>
+        {isLoggedIn ? (
+          <div className="user-info">
+            <span className="user-name">
+              Hello, {userName}!
+            </span>
+            {email === 'krizzy@gmail.com' || email === 'staycrafty@gmail.com' ? (
+             <button className="seller-centre-btn" onClick={goToSellerCentre}>Seller Centre</button> // Use goToSellerCentre
+            ) : null}
+            <button className="logout-btn" onClick={handleLogout}>Logout</button>
           </div>
-          {userName && <span className="user-name">Hello, {userName}!</span>}
+        ) : (
           <div className="icon user-icon" onClick={openLoginModal}>
             <img src={UserIcon} alt="User Icon" className="icon-image" />
           </div>
-          <div className="icon cart-icon" onClick={openCart}>
-            <img src={CartIcon} alt="Cart Icon" className="icon-image" />
-          </div>
+        )}
+
+
+        <div className="icon cart-icon" onClick={openCart}>
+          <img src={CartIcon} alt="Cart Icon" className="icon-image" />
+          {cartItems.length > 0 && <span className="cart-count">{cartItems.length}</span>}
         </div>
-      </header>
+      </div>
+    </header>
       
       {isCartOpen && (
         <div className="cart-popout">
@@ -203,14 +263,20 @@ const NavigationBar = () => {
             <button className="close-btn" onClick={closeCart}>x</button>
           </div>
           <div className="cart-items-container">
-            <div className="cart-item">
-              <p>No items in your cart yet!</p>
-            </div>
+            {cartItems.length === 0 ? (
+              <div className="cart-item"><p>No items in your cart yet!</p></div>
+            ) : (
+              cartItems.map((item, index) => (
+                <div key={index} className="cart-item">
+                  <p>{item.name}</p>  {/* Display item name */}
+                </div>
+              ))
+            )}
           </div>
           <div className="cart-footer">
             <div className="subtotal">
-              <span>Subtotal (1 item)</span>
-              <span>₱0.00</span>
+              <span>Subtotal ({cartItems.length} items)</span>
+              <span>₱{cartItems.length * 10}</span>
             </div>
             <button className="checkout-btn">CHECKOUT</button>
           </div>
@@ -237,6 +303,14 @@ const NavigationBar = () => {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
+            <input
+              type="checkbox"
+              id="rememberMe"
+              checked={rememberMe}
+              onChange={() => setRememberMe(!rememberMe)}
+            />
+            <label htmlFor="rememberMe">Remember Me</label>
+
             {warning && <div style={{ color: 'red' }}>{warning}</div>}
             <button onClick={handleLogin}>Login</button>
             <button onClick={openForgotPasswordModal}>Forgot Password?</button>
